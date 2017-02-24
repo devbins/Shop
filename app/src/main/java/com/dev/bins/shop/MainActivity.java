@@ -26,18 +26,19 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.bottom_nav)
     BottomNavigationView mBottomNavigation;
     private List<Fragment> mFragments = new ArrayList<Fragment>(5);
+    private FragmentManager mFragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        mFragmentManager = getSupportFragmentManager();
         init();
         mBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                FragmentTransaction transaction = mFragmentManager.beginTransaction();
                 switch (item.getItemId()) {
                     case R.id.home:
                         transaction.replace(R.id.content, mFragments.get(0));
@@ -59,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.content, mFragments.get(0));
+        fragmentTransaction.commit();
 
     }
 
