@@ -4,8 +4,11 @@ package com.dev.bins.shop.fragment.home;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.daimajia.slider.library.SliderLayout;
@@ -31,7 +34,7 @@ import static android.R.attr.banner;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment implements GestureDetector.OnGestureListener {
 
     List<Recommend> mRecommends = new ArrayList<>();
 
@@ -41,7 +44,7 @@ public class HomeFragment extends BaseFragment {
     SliderLayout mSliderLayout;
     @BindView(R.id.recycler)
     RecyclerView mRecyclerView;
-
+    private GestureDetectorCompat gestureDetectorCompat;
     private Adapter mAdapter;
 
     public HomeFragment() {
@@ -74,9 +77,27 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void initRecyclerView() {
+        gestureDetectorCompat = new GestureDetectorCompat(getContext(), this);
         mAdapter = new Adapter(mRecommends);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                gestureDetectorCompat.onTouchEvent(e);
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+                gestureDetectorCompat.onTouchEvent(e);
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
         Subscriber<List<Recommend>> subscriber = new Subscriber<List<Recommend>>() {
             @Override
             public void onCompleted() {
@@ -132,5 +153,41 @@ public class HomeFragment extends BaseFragment {
         if (null != mSubscriptions) {
             mSubscriptions.unsubscribe();
         }
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        float x = e.getX();
+        float y = e.getY();
+        View child = mRecyclerView.findChildViewUnder(x, y);
+        int position = mRecyclerView.getChildLayoutPosition(child);
+        RecyclerView.ViewHolder childViewHolder = mRecyclerView.getChildViewHolder(child);
+
+        return true;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        return false;
     }
 }

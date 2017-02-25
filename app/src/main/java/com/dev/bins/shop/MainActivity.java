@@ -13,7 +13,7 @@ import com.dev.bins.shop.fragment.Cart.CartFragment;
 import com.dev.bins.shop.fragment.category.CategoryFragment;
 import com.dev.bins.shop.fragment.home.HomeFragment;
 import com.dev.bins.shop.fragment.hot.HotFragment;
-import com.dev.bins.shop.fragment.MeFragment;
+import com.dev.bins.shop.fragment.me.MeFragment;
 
 import java.util.ArrayList;
 import java.util.List;

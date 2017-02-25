@@ -14,6 +14,7 @@ import com.dev.bins.shop.bean.Cart;
 import com.dev.bins.shop.widget.CountView;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -28,6 +29,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
 
     private List<Cart> mCards;
     private Context mContext;
+
+    public CartAdapter() {
+        mCards = new ArrayList<>();
+    }
 
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
