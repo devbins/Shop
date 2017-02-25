@@ -23,7 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ShopDetailActivity" />
-        <activity android:name=".OrderActivity"></activity>
+        <activity android:name=".OrderActivity" />
+        <activity android:name=".AddAddressActivity"></activity>
     </application>
 
 </manifest>

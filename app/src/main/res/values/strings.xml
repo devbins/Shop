@@ -13,5 +13,8 @@
     <string name="calc">结算</string>
     <string name="myOrder">我的订单</string>
     <string name="address">收货地址</string>
+    <string name="receive">收件人</string>
+    <string name="phone">联系电话</string>
+    <string name="address_detail">详细地址</string>
 
 </resources>
