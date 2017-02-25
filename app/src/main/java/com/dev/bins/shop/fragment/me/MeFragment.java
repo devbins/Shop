@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
+import com.dev.bins.shop.AddAddressActivity;
 import com.dev.bins.shop.OrderActivity;
 import com.dev.bins.shop.R;
 import com.dev.bins.shop.bean.City;
@@ -56,7 +57,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
 
     @BindView(R.id.avatar)
     ImageView mCircleImageView;
-    
+
     public MeFragment() {
         super();
         // Required empty public constructor
@@ -102,7 +103,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.tv_address:
-
+                Intent intentaddress = new Intent(getContext(), AddAddressActivity.class);
+                startActivity(intentaddress);
                 break;
         }
     }

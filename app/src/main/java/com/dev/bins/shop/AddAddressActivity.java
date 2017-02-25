@@ -55,7 +55,7 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initPickView() {
-        mOptionsPickerView = new OptionsPickerView.Builder(getContext(), new OptionsPickerView.OnOptionsSelectListener() {
+        mOptionsPickerView = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
@@ -67,15 +67,6 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
         }).setSubmitText("确定")
                 .setCancelText("取消")
                 .setTitleText("城市选择")
-                .setSubCalSize(18)
-                .setTitleSize(20)
-                .setTitleColor(Color.BLACK)
-                .setSubmitColor(Color.BLUE)
-                .setCancelColor(Color.BLUE)
-                .setTitleBgColor(0xFF333333)//标题背景颜色 Night mode
-                .setBgColor(0xFF000000)//滚轮背景颜色 Night mode
-                .setContentTextSize(18)
-                .setLinkage(false)
                 .setLabels("省", "市", "区")//设置选择的三级单位
                 .setCyclic(false, false, false)//循环与否
                 .setSelectOptions(1, 1, 1)  //设置默认选中项

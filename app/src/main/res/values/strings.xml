@@ -16,5 +16,7 @@
     <string name="receive">收件人</string>
     <string name="phone">联系电话</string>
     <string name="address_detail">详细地址</string>
+    <string name="add_address">添加地址</string>
+    <string name="shop_detail">商品详情页</string>
 
 </resources>
