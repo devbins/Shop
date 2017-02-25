@@ -1,6 +1,7 @@
 package com.dev.bins.shop.fragment.home;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.dev.bins.shop.R;
+import com.dev.bins.shop.ShopDetailActivity;
 import com.dev.bins.shop.bean.Banner;
 import com.dev.bins.shop.bean.Recommend;
 import com.dev.bins.shop.fragment.BaseFragment;
@@ -170,7 +172,8 @@ public class HomeFragment extends BaseFragment implements GestureDetector.OnGest
         View child = mRecyclerView.findChildViewUnder(x, y);
         int position = mRecyclerView.getChildLayoutPosition(child);
         RecyclerView.ViewHolder childViewHolder = mRecyclerView.getChildViewHolder(child);
-
+        Intent intent = new Intent(getContext(), ShopDetailActivity.class);
+        startActivity(intent);
         return true;
     }
 
