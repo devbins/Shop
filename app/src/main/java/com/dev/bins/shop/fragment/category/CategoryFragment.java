@@ -4,9 +4,12 @@ package com.dev.bins.shop.fragment.category;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.daimajia.slider.library.SliderLayout;
@@ -46,6 +49,7 @@ public class CategoryFragment extends BaseFragment {
 
     CategoryContentAdapter mContentAdapter;
     CategoryItemAdapter mItemAdapter;
+    GestureDetectorCompat mItemGestureDetectorCompat;
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -79,6 +83,15 @@ public class CategoryFragment extends BaseFragment {
         mContentAdapter = new CategoryContentAdapter(mCategoryDatas);
         mContentRecyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
         mContentRecyclerView.setAdapter(mContentAdapter);
+        loadData();
+
+    }
+
+    private void loadData() {
+        loadData(1);
+    }
+
+    private void loadData(int cid) {
         Subscriber<Goods> subscriber = new Subscriber<Goods>() {
             @Override
             public void onCompleted() {
@@ -96,9 +109,8 @@ public class CategoryFragment extends BaseFragment {
                 mCategoryDatas.addAll(goods.getList());
             }
         };
-        Subscription subscription = NetworkManager.getInstance().getCategoryData(subscriber, 1, 1, 10);
+        Subscription subscription = NetworkManager.getInstance().getCategoryData(subscriber, cid, 1, 10);
         mSubscriptions.add(subscription);
-
     }
 
 
@@ -133,6 +145,35 @@ public class CategoryFragment extends BaseFragment {
         mItemAdapter = new CategoryItemAdapter(mCategories);
         mItemRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
         mItemRecyclerView.setAdapter(mItemAdapter);
+        mItemGestureDetectorCompat = new GestureDetectorCompat(getContext(), new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                float x = e.getX();
+                float y = e.getY();
+                View child = mItemRecyclerView.findChildViewUnder(x, y);
+                int position = mItemRecyclerView.getChildLayoutPosition(child);
+                loadData(position+1);
+                return true;
+            }
+        });
+
+        mItemRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                mItemGestureDetectorCompat.onTouchEvent(e);
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+                mItemGestureDetectorCompat.onTouchEvent(e);
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
         Subscriber<List<Category>> subscriber = new Subscriber<List<Category>>() {
             @Override
             public void onCompleted() {
