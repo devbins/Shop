@@ -9,7 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.dev.bins.shop.R;
+import com.dev.bins.shop.bean.Banner;
 import com.dev.bins.shop.bean.Category;
 import com.dev.bins.shop.fragment.BaseFragment;
 import com.dev.bins.shop.net.NetworkManager;
@@ -64,6 +67,34 @@ public class CategoryFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initItemRecycler(view);
+        addBanner();
+    }
+
+    private void addBanner() {
+        Subscriber<List<Banner>> subscriber = new Subscriber<List<Banner>>() {
+            @Override
+            public void onCompleted() {
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onNext(List<Banner> banners) {
+                for (Banner banner : banners) {
+
+                    TextSliderView textSliderView = new TextSliderView(getActivity());
+                    textSliderView.image(banner.getImgUrl());
+                    textSliderView.description(banner.getName());
+                    textSliderView.setScaleType(BaseSliderView.ScaleType.Fit);
+                    mSliderLayout.addSlider(textSliderView);
+                }
+            }
+        };
+        Subscription subscription = NetworkManager.getInstance().getBanner(subscriber);
+        mSubscriptions.add(subscription);
     }
 
     private void initItemRecycler(View view) {
