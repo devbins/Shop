@@ -11,8 +11,8 @@ import android.view.MenuItem;
 
 import com.dev.bins.shop.fragment.CartFragment;
 import com.dev.bins.shop.fragment.CategoryFragment;
-import com.dev.bins.shop.fragment.HomeFragment;
-import com.dev.bins.shop.fragment.HotFragment;
+import com.dev.bins.shop.fragment.home.HomeFragment;
+import com.dev.bins.shop.fragment.hot.HotFragment;
 import com.dev.bins.shop.fragment.MeFragment;
 
 import java.util.ArrayList;

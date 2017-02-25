@@ -1,10 +1,30 @@
 package com.dev.bins.shop.net;
 
-import okhttp3.HttpUrl;
+import com.dev.bins.shop.bean.Banner;
+import com.dev.bins.shop.bean.Goods;
+import com.dev.bins.shop.bean.Recommend;
+
+import java.util.List;
+
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+import rx.Observable;
 
 /**
  * Created by bin on 24/02/2017.
  */
-public class Api {
-    public static String  BASE_URL = "";
+public interface Api {
+//    http://112.124.22.238:8081/course_api/banner/query?type=1
+     String  BASE_URL = "http://112.124.22.238:8081/course_api/";
+
+
+
+    @GET("banner/query")
+    Observable<List<Banner>> getBanner(@Query("type")long type);
+
+    @GET("campaign/recommend")
+    Observable<List<Recommend>> getCampaign();
+//curPage=1&pageSize=10
+    @GET("wares/hot")
+    Observable<List<Goods>> getGoodsWithPage(@Query("curPage")int page,@Query("pageSize")int pageSize);
 }

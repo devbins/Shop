@@ -8,12 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by bin on 24/02/2017.
  */
 
 public abstract class BaseFragment extends Fragment {
+
+    protected CompositeSubscription mSubscriptions;
+
+    public BaseFragment() {
+        mSubscriptions = new CompositeSubscription();
+    }
 
     protected abstract int getLayoutId();
 
@@ -22,7 +29,7 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(getLayoutId(), container, false);
-        ButterKnife.bind(view);
+        ButterKnife.bind(this, view);
         return view;
     }
 }

@@ -16,6 +16,7 @@ public class MeFragment extends BaseFragment {
 
 
     public MeFragment() {
+        super();
         // Required empty public constructor
     }
 

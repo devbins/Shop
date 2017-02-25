@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.dev.bins.shop.fragment.HomeFragment">
+    tools:context="com.dev.bins.shop.fragment.home.HomeFragment">
 
     <com.dev.bins.shop.widget.MyToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         app:title="@string/app_name">
 
     </com.dev.bins.shop.widget.MyToolbar>

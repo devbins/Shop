@@ -16,6 +16,7 @@ public class CartFragment extends BaseFragment {
 
 
     public CartFragment() {
+        super();
         // Required empty public constructor
     }
 

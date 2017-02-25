@@ -17,6 +17,7 @@ public class CategoryFragment extends BaseFragment {
 
     public CategoryFragment() {
         // Required empty public constructor
+        super();
     }
 
     public static CategoryFragment newInstance() {
@@ -36,7 +37,8 @@ public class CategoryFragment extends BaseFragment {
 
 //    @Override
 //    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
+//
+//             Bundle savedInstanceState) {
 //        // Inflate the layout for this fragment
 //        return inflater.inflate(R.layout.fragment_category, container, false);
 //    }
