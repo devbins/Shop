@@ -11,5 +11,7 @@
     <string name="buy_now">立即购买</string>
     <string name="select_all">全选</string>
     <string name="calc">结算</string>
+    <string name="myOrder">我的订单</string>
+    <string name="address">收货地址</string>
 
 </resources>

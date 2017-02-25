@@ -36,7 +36,7 @@ import static android.R.attr.banner;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends BaseFragment implements GestureDetector.OnGestureListener {
+public class HomeFragment extends BaseFragment {
 
     List<Recommend> mRecommends = new ArrayList<>();
 
@@ -77,7 +77,19 @@ public class HomeFragment extends BaseFragment implements GestureDetector.OnGest
     }
 
     private void initRecyclerView() {
-        gestureDetectorCompat = new GestureDetectorCompat(getContext(), this);
+        gestureDetectorCompat = new GestureDetectorCompat(getContext(), new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                float x = e.getX();
+                float y = e.getY();
+                View child = mRecyclerView.findChildViewUnder(x, y);
+                int position = mRecyclerView.getChildLayoutPosition(child);
+                RecyclerView.ViewHolder childViewHolder = mRecyclerView.getChildViewHolder(child);
+                Intent intent = new Intent(getContext(), ShopDetailActivity.class);
+                startActivity(intent);
+                return true;
+            }
+        });
         mAdapter = new Adapter(mRecommends);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -142,8 +154,8 @@ public class HomeFragment extends BaseFragment implements GestureDetector.OnGest
                 }
             }
         };
-        Subscription subscription = NetworkManager.getInstance().getBanner(subscriber);
-        mSubscriptions.add(subscription);
+        NetworkManager.getInstance().getBanner(subscriber);
+//        mSubscriptions.add(subscription);
     }
 
 
@@ -155,40 +167,5 @@ public class HomeFragment extends BaseFragment implements GestureDetector.OnGest
         }
     }
 
-    @Override
-    public boolean onDown(MotionEvent e) {
-        return false;
-    }
 
-    @Override
-    public void onShowPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-        float x = e.getX();
-        float y = e.getY();
-        View child = mRecyclerView.findChildViewUnder(x, y);
-        int position = mRecyclerView.getChildLayoutPosition(child);
-        RecyclerView.ViewHolder childViewHolder = mRecyclerView.getChildViewHolder(child);
-        Intent intent = new Intent(getContext(), ShopDetailActivity.class);
-        startActivity(intent);
-        return true;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        return false;
-    }
 }

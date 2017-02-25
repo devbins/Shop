@@ -51,6 +51,7 @@ public class MyToolbar extends Toolbar {
 
         if (drawable != null) {
             mRightButton.setBackground(drawable);
+            mRightButton.setVisibility(VISIBLE);
         }
 
         typedArray.recycle();

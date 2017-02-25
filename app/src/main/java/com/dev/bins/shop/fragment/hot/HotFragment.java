@@ -55,13 +55,6 @@ public class HotFragment extends BaseFragment implements SwipeRefreshLayout.OnRe
         return R.layout.fragment_hot;
     }
 
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_hot, container, false);
-//    }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -70,6 +63,7 @@ public class HotFragment extends BaseFragment implements SwipeRefreshLayout.OnRe
         mAdapter = new HotAdapter(mGoods);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mAdapter);
+        load(1);
     }
 
     public void load(int page) {
@@ -91,17 +85,12 @@ public class HotFragment extends BaseFragment implements SwipeRefreshLayout.OnRe
                 mGoods.addAll(goodses.getList());
             }
         };
-        Subscription subscription = NetworkManager.getInstance().getGoods(subscriber, page, 10);
-        mSubscriptions.add(subscription);
+        NetworkManager.getInstance().getGoods(subscriber, page, 10);
+//        mSubscriptions.add(subscription);
 
     }
 
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        load(1);
-    }
 
     @Override
     public void onRefresh() {

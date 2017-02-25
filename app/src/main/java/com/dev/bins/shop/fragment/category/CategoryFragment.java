@@ -50,6 +50,7 @@ public class CategoryFragment extends BaseFragment {
     CategoryContentAdapter mContentAdapter;
     CategoryItemAdapter mItemAdapter;
     GestureDetectorCompat mItemGestureDetectorCompat;
+    private List<Banner> mBanner = new ArrayList<>();
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -74,7 +75,7 @@ public class CategoryFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        addBanner();
+//        addBanner();
         initItemRecycler(view);
         initCategoryContent(view);
     }
@@ -109,8 +110,8 @@ public class CategoryFragment extends BaseFragment {
                 mCategoryDatas.addAll(goods.getList());
             }
         };
-        Subscription subscription = NetworkManager.getInstance().getCategoryData(subscriber, cid, 1, 10);
-        mSubscriptions.add(subscription);
+        NetworkManager.getInstance().getCategoryData(subscriber, cid, 1, 10);
+
     }
 
 
@@ -118,6 +119,7 @@ public class CategoryFragment extends BaseFragment {
         Subscriber<List<Banner>> subscriber = new Subscriber<List<Banner>>() {
             @Override
             public void onCompleted() {
+                System.out.println("complete");
             }
 
             @Override
@@ -127,7 +129,9 @@ public class CategoryFragment extends BaseFragment {
 
             @Override
             public void onNext(List<Banner> banners) {
-                for (Banner banner : banners) {
+                mBanner.clear();
+                mBanner.addAll(banners);
+                for (Banner banner : mBanner) {
 
                     TextSliderView textSliderView = new TextSliderView(getActivity());
                     textSliderView.image(banner.getImgUrl());
@@ -137,8 +141,8 @@ public class CategoryFragment extends BaseFragment {
                 }
             }
         };
-        Subscription subscription = NetworkManager.getInstance().getBanner(subscriber);
-        mSubscriptions.add(subscription);
+        NetworkManager.getInstance().getBanner(subscriber);
+//        mSubscriptions.add(subscription);
     }
 
     private void initItemRecycler(View view) {
