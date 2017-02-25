@@ -1,16 +1,19 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.dev.bins.shop.fragment.hot.HotFragment">
 
     <com.dev.bins.shop.widget.MyToolbar
         android:id="@+id/hot_toolbar"
+        android:background="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"></com.dev.bins.shop.widget.MyToolbar>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -21,4 +24,4 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
 
-</FrameLayout>
+</LinearLayout>

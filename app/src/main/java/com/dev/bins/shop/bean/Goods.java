@@ -1,54 +1,57 @@
 package com.dev.bins.shop.bean;
 
+import java.util.List;
+
 /**
  * Created by bin on 25/02/2017.
  */
 
 public class Goods {
 
-    private long id;
-    private String name;
-    private String imgUrl;
-    private String description;
-    private float price;
+    private  int currentPage;
+    private  int pageSize;
+    private  int totalPage;
+    private  int totalCount;
 
-    public long getId() {
-        return id;
+    private List<GoodsItem> list;
+
+    public List<GoodsItem> getList() {
+        return list;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setList(List<GoodsItem> list) {
+        this.list = list;
     }
 
-    public String getName() {
-        return name;
+    public int getCurrentPage() {
+        return currentPage;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+    public int getPageSize() {
+        return pageSize;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
     }
 
-    public String getDescription() {
-        return description;
+    public int getTotalPage() {
+        return totalPage;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
     }
 
-    public float getPrice() {
-        return price;
+    public int getTotalCount() {
+        return totalCount;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
     }
 }

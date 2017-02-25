@@ -26,5 +26,5 @@ public interface Api {
     Observable<List<Recommend>> getCampaign();
 //curPage=1&pageSize=10
     @GET("wares/hot")
-    Observable<List<Goods>> getGoodsWithPage(@Query("curPage")int page,@Query("pageSize")int pageSize);
+    Observable<Goods> getGoodsWithPage(@Query("curPage")int page,@Query("pageSize")int pageSize);
 }

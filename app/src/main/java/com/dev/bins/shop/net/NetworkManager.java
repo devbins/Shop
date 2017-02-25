@@ -13,7 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.internal.util.SubscriptionList;
 import rx.schedulers.Schedulers;
 
 /**
@@ -60,7 +59,7 @@ public class NetworkManager {
                 .subscribe(subscriber);
     }
 
-    public Subscription getGoods(Subscriber<List<Goods>> subscriber,int page,int pageSize){
+    public Subscription getGoods(Subscriber<Goods> subscriber,int page,int pageSize){
         return mApi.getGoodsWithPage(page,pageSize)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
