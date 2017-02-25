@@ -14,6 +14,8 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.dev.bins.shop.R;
 import com.dev.bins.shop.bean.Banner;
 import com.dev.bins.shop.bean.Category;
+import com.dev.bins.shop.bean.Goods;
+import com.dev.bins.shop.bean.GoodsItem;
 import com.dev.bins.shop.fragment.BaseFragment;
 import com.dev.bins.shop.net.NetworkManager;
 import com.dev.bins.shop.widget.MyToolbar;
@@ -31,7 +33,7 @@ import rx.Subscription;
 public class CategoryFragment extends BaseFragment {
 
     List<Category> mCategories = new ArrayList<>();
-
+    List<GoodsItem> mCategoryDatas = new ArrayList<>();
     @BindView(R.id.slider)
     SliderLayout mSliderLayout;
     @BindView(R.id.category_toolbar)
@@ -41,8 +43,9 @@ public class CategoryFragment extends BaseFragment {
     @BindView(R.id.content)
     RecyclerView mContentRecyclerView;
 
-
+    CategoryContentAdapter mContentAdapter;
     CategoryItemAdapter mItemAdapter;
+
     public CategoryFragment() {
         // Required empty public constructor
     }
@@ -66,9 +69,37 @@ public class CategoryFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initItemRecycler(view);
         addBanner();
+        initItemRecycler(view);
+        initCategoryContent(view);
     }
+
+    private void initCategoryContent(View view) {
+        mContentAdapter = new CategoryContentAdapter(mCategoryDatas);
+        mContentRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        mContentRecyclerView.setAdapter(mContentAdapter);
+        Subscriber<Goods> subscriber = new Subscriber<Goods>() {
+            @Override
+            public void onCompleted() {
+                mContentAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onNext(Goods goods) {
+                mCategoryDatas.clear();
+                mCategoryDatas.addAll(goods.getList());
+            }
+        };
+        Subscription subscription = NetworkManager.getInstance().getCategoryData(subscriber, 1, 1, 10);
+        mSubscriptions.add(subscription);
+
+    }
+
 
     private void addBanner() {
         Subscriber<List<Banner>> subscriber = new Subscriber<List<Banner>>() {
@@ -99,7 +130,7 @@ public class CategoryFragment extends BaseFragment {
 
     private void initItemRecycler(View view) {
         mItemAdapter = new CategoryItemAdapter(mCategories);
-        mItemRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(),LinearLayoutManager.VERTICAL,false));
+        mItemRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
         mItemRecyclerView.setAdapter(mItemAdapter);
         Subscriber<List<Category>> subscriber = new Subscriber<List<Category>>() {
             @Override
@@ -125,7 +156,7 @@ public class CategoryFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (null != mSubscriptions){
+        if (null != mSubscriptions) {
             mSubscriptions.unsubscribe();
         }
     }

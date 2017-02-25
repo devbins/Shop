@@ -74,5 +74,14 @@ public class NetworkManager {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
     }
+    public Subscription getCategoryData(Subscriber<Goods> subscriber,int cid,int curPage,int pageSize){
+        return mApi.getCategoryData(cid,curPage,pageSize)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+
 
 }
