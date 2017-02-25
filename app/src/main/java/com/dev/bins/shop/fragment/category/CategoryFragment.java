@@ -4,6 +4,7 @@ package com.dev.bins.shop.fragment.category;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -76,7 +77,7 @@ public class CategoryFragment extends BaseFragment {
 
     private void initCategoryContent(View view) {
         mContentAdapter = new CategoryContentAdapter(mCategoryDatas);
-        mContentRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        mContentRecyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
         mContentRecyclerView.setAdapter(mContentAdapter);
         Subscriber<Goods> subscriber = new Subscriber<Goods>() {
             @Override
