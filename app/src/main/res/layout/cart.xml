@@ -41,7 +41,7 @@
             <com.dev.bins.shop.widget.CountView
                 android:id="@+id/count"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></com.dev.bins.shop.widget.CountView>
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

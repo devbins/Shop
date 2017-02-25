@@ -9,7 +9,7 @@ public class Banner {
 
     private String name;
     private String imgUrl;
-    private String type;
+//    private String type;
     private long id;
 
     public String getName() {
@@ -28,13 +28,13 @@ public class Banner {
         this.imgUrl = imgUrl;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
+//    public String getType() {
+//        return type;
+//    }
+//
+//    public void setType(String type) {
+//        this.type = type;
+//    }
 
     public long getId() {
         return id;

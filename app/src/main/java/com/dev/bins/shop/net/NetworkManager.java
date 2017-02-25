@@ -31,7 +31,7 @@ public class NetworkManager {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .build();
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(Api.BASE_URL)
+                .baseUrl(Api.LOCAL_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -45,7 +45,7 @@ public class NetworkManager {
 
 
     public Subscription getBanner(Subscriber<List<Banner>> subscriber) {
-        return mApi.getBanner(1)
+        return mApi.getBanner()
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

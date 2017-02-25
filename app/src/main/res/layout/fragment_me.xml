@@ -27,7 +27,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/colorPrimary"
                 app:layout_collapseMode="pin"
-                app:title="@string/me"></com.dev.bins.shop.widget.MyToolbar>
+                app:title="@string/me"/>
 
             <ImageView
                 android:id="@+id/avatar"

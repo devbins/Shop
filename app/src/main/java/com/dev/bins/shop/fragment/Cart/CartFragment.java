@@ -34,7 +34,6 @@ public class CartFragment extends BaseFragment {
     CartAdapter mCartAdapter;
 
     public CartFragment() {
-        super();
         // Required empty public constructor
     }
 

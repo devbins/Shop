@@ -22,7 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShopDetailActivity" />
+        <activity
+            android:name=".ShopDetailActivity"
+            android:launchMode="singleTop" />
         <activity android:name=".OrderActivity" />
         <activity android:name=".AddAddressActivity"></activity>
     </application>

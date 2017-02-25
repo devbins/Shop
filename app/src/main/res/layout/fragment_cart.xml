@@ -10,13 +10,13 @@
         android:id="@+id/cart_toolbar"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
-        app:title="@string/cart"></com.dev.bins.shop.widget.MyToolbar>
+        app:title="@string/cart"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/cart_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"></android.support.v7.widget.RecyclerView>
+        android:layout_marginTop="?attr/actionBarSize"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,10 +31,12 @@
             android:text="@string/select_all" />
 
         <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
             android:id="@+id/tv_total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
+            android:layout_toRightOf="@id/cb" />
 
         <Button
             android:text="@string/calc"

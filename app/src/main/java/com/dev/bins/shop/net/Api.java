@@ -16,10 +16,13 @@ import rx.Observable;
  */
 public interface Api {
     String BASE_URL = "http://112.124.22.238:8081/course_api/";
+    String LOCAL_URL = "http://192.168.1.104:8080/";
 
 
-    @GET("banner/query")
-    Observable<List<Banner>> getBanner(@Query("type") long type);
+//    @GET("banner/query")
+//    Observable<List<Banner>> getBanner(@Query("type") long type);
+    @GET("Banner")
+    Observable<List<Banner>> getBanner();
 
     @GET("campaign/recommend")
     Observable<List<Recommend>> getCampaign();
