@@ -8,6 +8,7 @@
     <com.dev.bins.shop.widget.MyToolbar
         android:id="@+id/category_toolbar"
         android:layout_width="match_parent"
+        app:title="@string/category"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"></com.dev.bins.shop.widget.MyToolbar>
 

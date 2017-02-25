@@ -1,6 +1,7 @@
 package com.dev.bins.shop.fragment.hot;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -95,6 +96,12 @@ public class HotFragment extends BaseFragment implements SwipeRefreshLayout.OnRe
 
     }
 
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        load(1);
+    }
 
     @Override
     public void onRefresh() {
