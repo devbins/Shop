@@ -15,7 +15,6 @@ import rx.Observable;
  * Created by bin on 24/02/2017.
  */
 public interface Api {
-    //    http://112.124.22.238:8081/course_api/banner/query?type=1
     String BASE_URL = "http://112.124.22.238:8081/course_api/";
 
 

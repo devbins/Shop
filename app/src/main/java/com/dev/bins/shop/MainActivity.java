@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.dev.bins.shop.fragment.CartFragment;
+import com.dev.bins.shop.fragment.Cart.CartFragment;
 import com.dev.bins.shop.fragment.category.CategoryFragment;
 import com.dev.bins.shop.fragment.home.HomeFragment;
 import com.dev.bins.shop.fragment.hot.HotFragment;
