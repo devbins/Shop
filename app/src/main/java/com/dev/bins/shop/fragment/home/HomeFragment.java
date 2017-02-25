@@ -48,8 +48,6 @@ public class HomeFragment extends BaseFragment implements GestureDetector.OnGest
     private Adapter mAdapter;
 
     public HomeFragment() {
-        // Required empty public constructor
-        super();
 
     }
 
