@@ -7,7 +7,7 @@
 
     <com.dev.bins.shop.widget.MyToolbar
         android:id="@+id/hot_toolbar"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"></com.dev.bins.shop.widget.MyToolbar>
 

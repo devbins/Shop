@@ -1,6 +1,7 @@
 package com.dev.bins.shop.net;
 
 import com.dev.bins.shop.bean.Banner;
+import com.dev.bins.shop.bean.Category;
 import com.dev.bins.shop.bean.Goods;
 import com.dev.bins.shop.bean.Recommend;
 
@@ -66,6 +67,12 @@ public class NetworkManager {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
     }
-
+    public Subscription getCategory(Subscriber<List<Category>> subscriber){
+        return mApi.getCategory()
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
 
 }

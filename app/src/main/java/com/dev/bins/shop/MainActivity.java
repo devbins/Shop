@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.dev.bins.shop.fragment.CartFragment;
-import com.dev.bins.shop.fragment.CategoryFragment;
+import com.dev.bins.shop.fragment.category.CategoryFragment;
 import com.dev.bins.shop.fragment.home.HomeFragment;
 import com.dev.bins.shop.fragment.hot.HotFragment;
 import com.dev.bins.shop.fragment.MeFragment;

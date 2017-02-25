@@ -1,6 +1,7 @@
 package com.dev.bins.shop.net;
 
 import com.dev.bins.shop.bean.Banner;
+import com.dev.bins.shop.bean.Category;
 import com.dev.bins.shop.bean.Goods;
 import com.dev.bins.shop.bean.Recommend;
 
@@ -27,4 +28,7 @@ public interface Api {
 //curPage=1&pageSize=10
     @GET("wares/hot")
     Observable<Goods> getGoodsWithPage(@Query("curPage")int page,@Query("pageSize")int pageSize);
+
+    @GET("category/list")
+    Observable<List<Category>> getCategory();
 }
