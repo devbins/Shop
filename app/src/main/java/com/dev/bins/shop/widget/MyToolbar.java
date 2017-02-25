@@ -66,6 +66,10 @@ public class MyToolbar extends Toolbar {
 
     }
 
+    public void setRightButtonClickListener(OnClickListener onClickListener) {
+        mRightButton.setOnClickListener(onClickListener);
+    }
+
 
     @Override
     public void setTitle(@StringRes int resId) {
