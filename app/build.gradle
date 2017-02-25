@@ -50,4 +50,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.1.1'
 
     compile 'org.litepal.android:core:1.4.1'
+
+    compile 'com.contrarywind:Android-PickerView:3.0.3'
 }

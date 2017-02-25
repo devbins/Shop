@@ -1,6 +1,7 @@
 package com.dev.bins.shop.fragment.me;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,11 +9,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dev.bins.shop.OrderActivity;
 import com.dev.bins.shop.R;
 import com.dev.bins.shop.fragment.BaseFragment;
 import com.dev.bins.shop.widget.MyToolbar;
 
 import butterknife.BindView;
+
+import static java.security.AccessController.getContext;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,10 +66,14 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.toolbar:
+
                 break;
             case R.id.tv_order:
+                Intent intent = new Intent(getContext(), OrderActivity.class);
+                startActivity(intent);
                 break;
             case R.id.tv_address:
+
                 break;
         }
     }
