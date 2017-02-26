@@ -67,9 +67,7 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
         }).setSubmitText("确定")
                 .setCancelText("取消")
                 .setTitleText("城市选择")
-                .setLabels("省", "市", "区")//设置选择的三级单位
                 .setCyclic(false, false, false)//循环与否
-                .setSelectOptions(1, 1, 1)  //设置默认选中项
                 .setOutSideCancelable(false)//点击外部dismiss default true
                 .build();
         mOptionsPickerView.setPicker(mProvinceList, mCities, mDistricts);
@@ -101,32 +99,24 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
             for (Province p : mProvinceList) {
 
                 List<City> cities = p.getCities();
-                ArrayList<String> citys = new ArrayList<>(cities.size()); //城市List
+                ArrayList<String> citys = new ArrayList<>(cities.size());
 
-
+                ArrayList<ArrayList<District>> dts = new ArrayList<>();
                 for (City c : cities) {
 
-                    citys.add(c.getName()); // 把城市名称放入 cityStrs
+                    citys.add(c.getName());
+                    ArrayList<District> districts = c.getDistricts();
 
+                    dts.add(districts);
 
-                    ArrayList<ArrayList<District>> dts = new ArrayList<>(); // 地区 List
-
-                    List<District> districts = c.getDistricts();
-                    ArrayList<District> districtStrs = new ArrayList<>(districts.size());
-
-                    for (District d : districts) {
-                        districtStrs.add(d); // 把城市名称放入 districtStrs
-                    }
-                    dts.add(districtStrs);
-
-
-                    mDistricts.add(dts);
                 }
+                mDistricts.add(dts);
 
-                mCities.add(citys); // 组装城市数据
+                mCities.add(citys);
 
             }
         }
+        System.out.println("com");
     }
 
 

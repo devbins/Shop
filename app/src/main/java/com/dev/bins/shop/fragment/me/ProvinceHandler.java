@@ -46,11 +46,11 @@ public class ProvinceHandler extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
         super.endElement(uri, localName, qName);
 
-        if ("province".equals(qName)){
+        if ("district".equals(qName)){
            city.getDistricts().add(district);
         }else if ("city".equals(qName)){
            province.getCities().add(city);
-        }else if ("district".equals(qName)){
+        }else if("province".equals(qName)){
            provinceList.add(province);
         }
     }

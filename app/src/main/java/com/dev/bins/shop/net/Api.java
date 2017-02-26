@@ -15,29 +15,46 @@ import rx.Observable;
  * Created by bin on 24/02/2017.
  */
 public interface Api {
-    String BASE_URL = "http://112.124.22.238:8081/course_api/";
-    String LOCAL_URL = "http://192.168.10.118:8080/";
+    String LOCAL_URL = "http://192.168.1.118:8080/";
 
 
-//    @GET("banner/query")
-//    Observable<List<Banner>> getBanner(@Query("type") long type);
+    /**
+     * 滚动条
+     * @return
+     */
     @GET("Banner")
     Observable<List<Banner>> getBanner();
 
-//    @GET("campaign/recommend")
-//    Observable<List<Recommend>> getRecommend();
+    /**
+     * 推荐
+     * @return
+     */
     @GET("recommend")
     Observable<List<Recommend>> getRecommend();
 
-    //curPage=1&pageSize=10
-//    @GET("wares/hot")
+    /**
+     * 热卖
+     * @param page 当前页
+     * @param pageSize 每页大小
+     * @return
+     */
     @GET("hot")
     Observable<Goods> getGoodsWithPage(@Query("curPage") int page, @Query("pageSize") int pageSize);
 
+    /**
+     * 分类列表
+     * @return
+     */
     @GET("category/list")
     Observable<List<Category>> getCategory();
 
-    //categoryId="+categoryId+"&curPage="+currPage+"&pageSize="+pageSize;
+    /**
+     * 分类
+     * @param cid 分类ID
+     * @param curPage 当前页
+     * @param pageSize 每页大小
+     * @return
+     */
     @GET("category")
     Observable<Goods> getCategoryData(@Query("cid") int cid, @Query("curPage") int curPage, @Query("pageSize") int pageSize);
 }

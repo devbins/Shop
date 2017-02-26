@@ -1,5 +1,6 @@
 package com.dev.bins.shop.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,13 +10,13 @@ import java.util.List;
 public class City {
 
     String name;
-    List<District> districts;
+    ArrayList<District> districts;
 
     public City() {
         this.name = name;
     }
 
-    public City(String name, List<District> districts) {
+    public City(String name, ArrayList<District> districts) {
         this.name = name;
         this.districts = districts;
     }
@@ -28,11 +29,11 @@ public class City {
         this.name = name;
     }
 
-    public List<District> getDistricts() {
+    public ArrayList<District> getDistricts() {
         return districts;
     }
 
-    public void setDistricts(List<District> districts) {
+    public void setDistricts(ArrayList<District> districts) {
         this.districts = districts;
     }
 }
