@@ -2,6 +2,8 @@ package com.dev.bins.shop.fragment.Cart;
 
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,6 +26,7 @@ import org.litepal.crud.DataSupport;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 import butterknife.BindView;
 import rx.Observable;
@@ -105,8 +108,6 @@ public class CartFragment extends BaseFragment {
         for (GoodsItem mCard : mCards) {
             if (mCard.isChecked()) {
                 mTotalPrice += mCard.getPrice() * mCard.getCount();
-            } else {
-                mCb.setChecked(false);
             }
         }
         mTvTotalPrice.setText("￥" + mTotalPrice);

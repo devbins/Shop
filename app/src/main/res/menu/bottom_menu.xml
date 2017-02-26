@@ -11,14 +11,14 @@
         android:title="@string/hot" />
     <item
         android:id="@+id/category"
-        android:icon="@mipmap/icon_discover"
+        android:icon="@mipmap/category"
         android:title="@string/category" />
     <item
         android:id="@+id/cart"
-        android:icon="@mipmap/icon_cart"
+        android:icon="@mipmap/cart"
         android:title="@string/cart" />
     <item
         android:id="@+id/me"
-        android:icon="@mipmap/icon_user"
+        android:icon="@mipmap/me"
         android:title="@string/me" />
 </menu>
