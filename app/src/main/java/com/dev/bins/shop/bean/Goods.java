@@ -13,14 +13,14 @@ public class Goods {
     private  int totalPage;
     private  int totalCount;
 
-    private List<GoodsItem> list;
+    private List<GoodsItem> goods;
 
-    public List<GoodsItem> getList() {
-        return list;
+    public List<GoodsItem> getGoods() {
+        return goods;
     }
 
-    public void setList(List<GoodsItem> list) {
-        this.list = list;
+    public void setGoods(List<GoodsItem> goods) {
+        this.goods = goods;
     }
 
     public int getCurrentPage() {

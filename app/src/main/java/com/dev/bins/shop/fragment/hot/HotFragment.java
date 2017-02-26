@@ -1,14 +1,12 @@
 package com.dev.bins.shop.fragment.hot;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.SoundEffectConstants;
 import android.view.View;
 
 import com.dev.bins.shop.R;
@@ -22,7 +20,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import rx.Subscriber;
-import rx.Subscription;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -82,7 +79,8 @@ public class HotFragment extends BaseFragment implements SwipeRefreshLayout.OnRe
 
             @Override
             public void onNext(Goods goodses) {
-                mGoods.addAll(goodses.getList());
+                mGoods.clear();
+                mGoods.addAll(goodses.getGoods());
             }
         };
         NetworkManager.getInstance().getGoods(subscriber, page, 10);

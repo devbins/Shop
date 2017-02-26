@@ -107,7 +107,7 @@ public class CategoryFragment extends BaseFragment {
             @Override
             public void onNext(Goods goods) {
                 mCategoryDatas.clear();
-                mCategoryDatas.addAll(goods.getList());
+                mCategoryDatas.addAll(goods.getGoods());
             }
         };
         NetworkManager.getInstance().getCategoryData(subscriber, cid, 1, 10);

@@ -9,7 +9,7 @@ public class GoodsItem {
     private long id;
     private String name;
     private String imgUrl;
-    private String description;
+    private String desc;
     private float price;
 
     public long getId() {
@@ -36,12 +36,12 @@ public class GoodsItem {
         this.imgUrl = imgUrl;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public float getPrice() {
