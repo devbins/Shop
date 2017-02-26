@@ -81,7 +81,8 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+//        imm.toggleSoftInput(0, InputMethodManager.HIDE_IMPLICIT_ONLY);
+        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
         mOptionsPickerView.show();
     }
 
