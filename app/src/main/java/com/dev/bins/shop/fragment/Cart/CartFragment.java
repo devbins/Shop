@@ -72,7 +72,7 @@ public class CartFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mCartAdapter = new CartAdapter(mCards,this);
+        mCartAdapter = new CartAdapter(mCards, this);
         mCartRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
         mCartRecyclerView.setAdapter(mCartAdapter);
         mCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -81,13 +81,13 @@ public class CartFragment extends BaseFragment {
                 if (isChecked) {
                     checkAll();
                     calcPrice();
-                    mCartAdapter.notifyDataSetChanged();
-                }else {
+                } else {
                     for (GoodsItem mCard : mCards) {
                         mCard.setChecked(false);
                         mCard.save();
                     }
                 }
+                mCartAdapter.notifyDataSetChanged();
             }
         });
         getData();
@@ -105,6 +105,8 @@ public class CartFragment extends BaseFragment {
         for (GoodsItem mCard : mCards) {
             if (mCard.isChecked()) {
                 mTotalPrice += mCard.getPrice() * mCard.getCount();
+            } else {
+                mCb.setChecked(false);
             }
         }
         mTvTotalPrice.setText("￥" + mTotalPrice);

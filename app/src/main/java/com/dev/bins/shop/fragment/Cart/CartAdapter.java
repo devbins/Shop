@@ -57,6 +57,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mCards.get(position).setChecked(isChecked);
                 mCards.get(position).save();
+                mCartFragment.calcPrice();
             }
         });
         holder.countView.setmOnCountChangeListener(new CountView.onCountChangeListener() {
