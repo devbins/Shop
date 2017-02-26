@@ -64,6 +64,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
             public void onChnage(int count) {
                 if (0 == count){
                     mCards.get(position).delete();
+                    mCards.remove(position);
+                    notifyDataSetChanged();
                 }else {
                     mCards.get(position).setCount(count);
                     mCards.get(position).save();
