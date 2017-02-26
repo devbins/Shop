@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/home"
-        android:icon="@mipmap/icon_home"
+        android:icon="@mipmap/home"
         android:title="@string/home" />
     <item
         android:id="@+id/hot"

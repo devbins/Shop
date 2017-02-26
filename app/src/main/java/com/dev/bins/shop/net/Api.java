@@ -38,6 +38,6 @@ public interface Api {
     Observable<List<Category>> getCategory();
 
     //categoryId="+categoryId+"&curPage="+currPage+"&pageSize="+pageSize;
-    @GET("wares/list")
-    Observable<Goods> getCategoryData(@Query("categoryId") int cid, @Query("curPage") int curPage, @Query("pageSize") int pageSize);
+    @GET("category")
+    Observable<Goods> getCategoryData(@Query("cid") int cid, @Query("curPage") int curPage, @Query("pageSize") int pageSize);
 }
