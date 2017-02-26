@@ -83,6 +83,7 @@ public class HomeFragment extends BaseFragment {
                 float x = e.getX();
                 float y = e.getY();
                 View child = mRecyclerView.findChildViewUnder(x, y);
+                if (null == child) return false;
                 int position = mRecyclerView.getChildLayoutPosition(child);
                 RecyclerView.ViewHolder childViewHolder = mRecyclerView.getChildViewHolder(child);
                 Intent intent = new Intent(getContext(), ShopDetailActivity.class);

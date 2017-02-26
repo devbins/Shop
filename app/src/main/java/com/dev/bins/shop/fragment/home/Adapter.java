@@ -39,10 +39,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        holder.tvTitle.setText(mRecommends.get(position).getTitle());
-        Picasso.with(mContext).load(mRecommends.get(position).getCpThree().getImgUrl()).into(holder.iv1);
-        Picasso.with(mContext).load(mRecommends.get(position).getCpTwo().getImgUrl()).into(holder.iv2);
-        Picasso.with(mContext).load(mRecommends.get(position).getCpOne().getImgUrl()).into(holder.iv3);
+        holder.tvTitle.setText(mRecommends.get(position).getName());
+        Picasso.with(mContext).load(mRecommends.get(position).getPromote3().getImgUrl()).into(holder.iv1);
+        Picasso.with(mContext).load(mRecommends.get(position).getPromote2().getImgUrl()).into(holder.iv2);
+        Picasso.with(mContext).load(mRecommends.get(position).getPromote1().getImgUrl()).fit().into(holder.iv3);
     }
 
     @Override

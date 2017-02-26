@@ -53,7 +53,7 @@ public class NetworkManager {
     }
 
     public Subscription getRecommend(Subscriber<List<Recommend>> subscriber){
-        return mApi.getCampaign()
+        return mApi.getRecommend()
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
