@@ -18,5 +18,6 @@
     <string name="address_detail">详细地址</string>
     <string name="add_address">添加地址</string>
     <string name="shop_detail">商品详情页</string>
+    <string name="error_empty">不能为空</string>
 
 </resources>

@@ -5,8 +5,10 @@ import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.dev.bins.shop.bean.City;
 import com.dev.bins.shop.bean.District;
+import com.dev.bins.shop.bean.OrderAddress;
 import com.dev.bins.shop.bean.Province;
 import com.dev.bins.shop.fragment.me.ProvinceHandler;
 import com.dev.bins.shop.widget.MyToolbar;
@@ -33,12 +36,13 @@ import javax.xml.parsers.SAXParserFactory;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.dev.bins.shop.R.string.address;
 import static org.litepal.LitePalApplication.getContext;
 
 public class AddAddressActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.ok_toolbar)
-    MyToolbar mToolbar;
+    Toolbar mToolbar;
     @BindView(R.id.ll_add)
     LinearLayout mLinearLayoutAdd;
     OptionsPickerView mOptionsPickerView;
@@ -50,6 +54,8 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
     TextView mTextViewAdd;
     @BindView(R.id.et_add_detail)
     EditText mEditTextAddress;
+    @BindView(R.id.btn_ok)
+    Button mBtnOK;
     private ArrayList<Province> mProvinceList;
     private ArrayList<ArrayList<String>> mCities = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<District>>> mDistricts = new ArrayList<>();
@@ -61,14 +67,15 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
         ButterKnife.bind(this);
         initData();
         initPickView();
-        mTextViewAdd.setOnClickListener(this);
-        mToolbar.setRightButtonText("完成");
-        mToolbar.setRightButtonClickListener(new View.OnClickListener() {
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        mBtnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AddAddressActivity.this, "ok", Toast.LENGTH_SHORT).show();
+                save();
             }
         });
+        mTextViewAdd.setOnClickListener(this);
     }
 
     @Override
@@ -140,6 +147,37 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
 
             }
         }
+    }
+
+
+    public void save() {
+        String name = mEditTextName.getText().toString().trim();
+        String phone = mEditTextPhone.getText().toString().trim();
+        String addr = mTextViewAdd.getText().toString().trim();
+        String address = mEditTextAddress.getText().toString().trim();
+        boolean isEmpty = false;
+        if (name.isEmpty()) {
+            mEditTextName.setError(getString(R.string.error_empty));
+            isEmpty = true;
+        }
+        if (phone.isEmpty()) {
+            mEditTextPhone.setError(getString(R.string.error_empty));
+            isEmpty = true;
+        }
+        if (addr.isEmpty()) {
+            mTextViewAdd.setError(getString(R.string.error_empty));
+            isEmpty = true;
+        }
+        if (address.isEmpty()) {
+            mEditTextAddress.setError(getString(R.string.error_empty));
+            isEmpty = true;
+        }
+        if (!isEmpty) {
+            OrderAddress orderAddress = new OrderAddress(name, phone, addr, address);
+            orderAddress.save();
+        }
+
+
     }
 
 

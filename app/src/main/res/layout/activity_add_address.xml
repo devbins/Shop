@@ -9,21 +9,34 @@
     tools:context="com.dev.bins.shop.AddAddressActivity">
 
 
-    <com.dev.bins.shop.widget.MyToolbar
+    <android.support.v7.widget.Toolbar
         android:id="@+id/ok_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:title="@string/add_address">
+        android:background="@color/colorPrimary">
 
-    </com.dev.bins.shop.widget.MyToolbar>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:textColor="@android:color/white"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:text="完成"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
+        android:layout_marginTop="10dp"
         android:background="#66ffffff"
         app:cardCornerRadius="5dp"
         app:contentPadding="5dp">
@@ -57,7 +70,7 @@
                     android:hint="请输入名字" />
             </LinearLayout>
 
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,13 +114,13 @@
 
 
                 <TextView
-                    android:padding="3dp"
                     android:id="@+id/tv_addr"
-                    android:textSize="18sp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="请输入收货地址" />
+                    android:hint="请输入收货地址"
+                    android:padding="3dp"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout

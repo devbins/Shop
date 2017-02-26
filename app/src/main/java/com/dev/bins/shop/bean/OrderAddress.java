@@ -13,6 +13,17 @@ public class OrderAddress extends DataSupport {
     private String add;
     private String address;
 
+    public  OrderAddress(){
+
+    }
+
+    public OrderAddress(String name, String phone, String add, String address) {
+        this.name = name;
+        this.phone = phone;
+        this.add = add;
+        this.address = address;
+    }
+
     public String getName() {
         return name;
     }
