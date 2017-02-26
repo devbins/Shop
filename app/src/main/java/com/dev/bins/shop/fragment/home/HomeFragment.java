@@ -128,8 +128,7 @@ public class HomeFragment extends BaseFragment {
                 mAdapter.notifyDataSetChanged();
             }
         };
-        Subscription subscription = NetworkManager.getInstance().getRecommend(subscriber);
-        mSubscriptions.add(subscription);
+        NetworkManager.getInstance().getRecommend(subscriber);
     }
 
     private void addBanner() {
