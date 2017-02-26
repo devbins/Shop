@@ -79,6 +79,7 @@ public class CartFragment extends BaseFragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    checkAll();
                     calcPrice();
                     mCartAdapter.notifyDataSetChanged();
                 }else {
@@ -90,6 +91,13 @@ public class CartFragment extends BaseFragment {
             }
         });
         getData();
+    }
+
+    private void checkAll() {
+        for (GoodsItem mCard : mCards) {
+            mCard.setChecked(true);
+            mCard.save();
+        }
     }
 
     public void calcPrice() {
