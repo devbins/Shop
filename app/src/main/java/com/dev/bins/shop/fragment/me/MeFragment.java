@@ -59,7 +59,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     ImageView mCircleImageView;
 
     public MeFragment() {
-        super();
         // Required empty public constructor
     }
 
@@ -84,7 +83,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         mToolbar.setRightButtonClickListener(this);
         mTvOrder.setOnClickListener(this);
         mTvAddress.setOnClickListener(this);
-
 
     }
 

@@ -15,7 +15,7 @@ import rx.Observable;
  * Created by bin on 24/02/2017.
  */
 public interface Api {
-    String LOCAL_URL = "http://192.168.1.118:8080/";
+    String LOCAL_URL = "http://192.168.10.113:8080/";
 
 
     /**

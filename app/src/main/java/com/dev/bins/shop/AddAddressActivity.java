@@ -1,17 +1,23 @@
 package com.dev.bins.shop;
 
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.dev.bins.shop.bean.City;
 import com.dev.bins.shop.bean.District;
 import com.dev.bins.shop.bean.Province;
 import com.dev.bins.shop.fragment.me.ProvinceHandler;
+import com.dev.bins.shop.widget.MyToolbar;
 
 import org.xml.sax.SAXException;
 
@@ -31,10 +37,19 @@ import static org.litepal.LitePalApplication.getContext;
 
 public class AddAddressActivity extends AppCompatActivity implements View.OnClickListener {
 
-
+    @BindView(R.id.ok_toolbar)
+    MyToolbar mToolbar;
     @BindView(R.id.ll_add)
     LinearLayout mLinearLayoutAdd;
     OptionsPickerView mOptionsPickerView;
+    @BindView(R.id.et_name)
+    EditText mEditTextName;
+    @BindView(R.id.et_phone)
+    EditText mEditTextPhone;
+    @BindView(R.id.tv_addr)
+    TextView mTextViewAdd;
+    @BindView(R.id.et_add_detail)
+    EditText mEditTextAddress;
     private ArrayList<Province> mProvinceList;
     private ArrayList<ArrayList<String>> mCities = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<District>>> mDistricts = new ArrayList<>();
@@ -46,11 +61,20 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
         ButterKnife.bind(this);
         initData();
         initPickView();
-        mLinearLayoutAdd.setOnClickListener(this);
+        mTextViewAdd.setOnClickListener(this);
+        mToolbar.setRightButtonText("完成");
+        mToolbar.setRightButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(AddAddressActivity.this, "ok", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
         mOptionsPickerView.show();
     }
 
@@ -62,13 +86,13 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
                 String tx = mProvinceList.get(options1).getPickerViewText()
                         + mCities.get(options1).get(option2)
                         + mDistricts.get(options1).get(option2).get(options3).getPickerViewText();
-//                tvOptions.setText(tx);
+                mTextViewAdd.setText(tx);
             }
         }).setSubmitText("确定")
                 .setCancelText("取消")
                 .setTitleText("城市选择")
                 .setCyclic(false, false, false)//循环与否
-                .setOutSideCancelable(false)//点击外部dismiss default true
+                .setOutSideCancelable(true)//点击外部dismiss default true
                 .build();
         mOptionsPickerView.setPicker(mProvinceList, mCities, mDistricts);
 
@@ -116,7 +140,6 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
 
             }
         }
-        System.out.println("com");
     }
 
 

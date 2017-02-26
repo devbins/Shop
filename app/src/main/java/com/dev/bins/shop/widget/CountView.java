@@ -27,7 +27,7 @@ public class CountView extends LinearLayout implements View.OnClickListener {
     private View mView;
 
     private int mCount = 1;
-
+    private onCountChangeListener mOnCountChangeListener;
     public CountView(Context context) {
         this(context, null);
     }
@@ -55,7 +55,11 @@ public class CountView extends LinearLayout implements View.OnClickListener {
                 mCount--;
                 break;
         }
+        if (mCount < 0) mCount = 0;
         tvCount.setText(String.valueOf(mCount));
+        if (null != mOnCountChangeListener){
+            mOnCountChangeListener.onChnage(mCount);
+        }
     }
 
 
@@ -66,5 +70,14 @@ public class CountView extends LinearLayout implements View.OnClickListener {
     public void setmCount(int count) {
         this.mCount = count;
         tvCount.setText(String.valueOf(count));
+    }
+
+
+    public void setmOnCountChangeListener(onCountChangeListener mOnCountChangeListener) {
+        this.mOnCountChangeListener = mOnCountChangeListener;
+    }
+
+    public interface onCountChangeListener{
+        void onChnage(int count);
     }
 }

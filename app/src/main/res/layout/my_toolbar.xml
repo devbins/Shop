@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
 
     <EditText
-        android:gravity="center"
         android:id="@+id/et_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:drawableLeft="@mipmap/icon_search"
+        android:gravity="center"
         android:visibility="gone" />
 
     <TextView
@@ -21,15 +22,18 @@
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:visibility="gone" />
+        android:visibility="visible"
+        tools:text="xxxx" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_right"
-        style="@android:style/Widget.Material.Toolbar.Button.Navigation"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:visibility="gone" />
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        tools:text="完成" />
 
 </RelativeLayout>

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="3dp"
+    app:contentPadding="2dp"
     android:orientation="vertical">
 
 
@@ -23,23 +27,32 @@
 
 
         <LinearLayout
+            android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
+                android:layout_marginLeft="5dp"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
                 android:id="@+id/tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/tv_price"
+                android:layout_marginRight="5dp"
+                android:textColor="#ff0000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right" />
 
             <com.dev.bins.shop.widget.CountView
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
                 android:id="@+id/count"
+                android:layout_marginLeft="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

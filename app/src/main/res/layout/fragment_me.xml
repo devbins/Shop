@@ -51,7 +51,7 @@
                 android:id="@+id/tv_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
+                android:layout_margin="5dp"
                 android:text="@string/myOrder"
                 android:textSize="20sp" />
 
@@ -60,7 +60,7 @@
                 android:id="@+id/tv_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
+                android:layout_margin="5dp"
                 android:text="@string/address"
                 android:textSize="20sp" />
 

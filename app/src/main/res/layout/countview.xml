@@ -5,19 +5,23 @@
     android:orientation="horizontal">
 
     <Button
-        android:id="@+id/btn_add"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_del"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:text="-" />
+        android:text="-"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tv_count"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content" />
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btn_del"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_add"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:text="+" />
+        android:text="+"
+        android:textSize="20sp" />
 </LinearLayout>

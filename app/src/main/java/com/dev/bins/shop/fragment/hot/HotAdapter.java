@@ -11,13 +11,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dev.bins.shop.R;
+import com.dev.bins.shop.bean.Cart;
 import com.dev.bins.shop.bean.GoodsItem;
 import com.squareup.picasso.Picasso;
+
+import org.litepal.crud.DataSupport;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.R.attr.id;
 
 /**
  * Created by bin on 25/02/2017.
@@ -26,6 +31,7 @@ import butterknife.ButterKnife;
 public class HotAdapter extends RecyclerView.Adapter<HotAdapter.Holder> {
     private List<GoodsItem> mGoods;
     private Context mContext;
+
     public HotAdapter(List<GoodsItem> goods) {
         this.mGoods = goods;
     }
@@ -46,7 +52,18 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.Holder> {
         holder.btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, position+"", Toast.LENGTH_SHORT).show();
+                List<GoodsItem> goodsItems = DataSupport.where("name = ?", mGoods.get(position).getName()).find(GoodsItem.class);
+                if (goodsItems.size()>0) {
+                    GoodsItem good = goodsItems.get(0);
+                    int count = good.getCount();
+                    good.setCount(++count);
+                    good.update(good.getId());
+                } else {
+                    GoodsItem good = new GoodsItem(mGoods.get(position));
+                    good.setCount(1);
+                    good.setChecked(true);
+                    good.save();
+                }
             }
         });
     }

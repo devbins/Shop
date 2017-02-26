@@ -1,16 +1,55 @@
 package com.dev.bins.shop.bean;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by bin on 25/02/2017.
  */
 
-public class GoodsItem {
+public class GoodsItem extends DataSupport{
+
 
     private long id;
     private String name;
     private String imgUrl;
     private String desc;
     private float price;
+    private int count;
+    private boolean isChecked;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
+
+    public GoodsItem() {
+    }
+
+    public GoodsItem(GoodsItem goodsItem){
+        this(goodsItem.getId(),goodsItem.getName(),goodsItem.getImgUrl(),goodsItem.getDesc(),goodsItem.getPrice());
+    }
+
+
+    public GoodsItem(long id, String name, String imgUrl, String desc, float price) {
+        this.id = id;
+        this.name = name;
+        this.imgUrl = imgUrl;
+        this.desc = desc;
+        this.price = price;
+    }
+
 
     public long getId() {
         return id;
@@ -50,5 +89,18 @@ public class GoodsItem {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "GoodsItem{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", desc='" + desc + '\'' +
+                ", price=" + price +
+                ", count=" + count +
+                ", isChecked=" + isChecked +
+                '}';
     }
 }

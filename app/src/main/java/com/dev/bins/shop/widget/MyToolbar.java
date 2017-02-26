@@ -1,9 +1,9 @@
 package com.dev.bins.shop.widget;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.StringRes;
+import android.support.v7.widget.TintTypedArray;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -16,22 +16,17 @@ import android.widget.TextView;
 
 import com.dev.bins.shop.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 
 /**
  * Created by bin on 24/02/2017.
  */
 
 public class MyToolbar extends Toolbar {
-    @BindView(R.id.et_search)
+
     EditText mSearchEditText;
-    @BindView(R.id.tv_title)
     TextView mTitleText;
-    @BindView(R.id.btn_right)
-    Button mRightButton;
-    private View mView;
+    TextView mRightButton;
+    View mView;
 
     public MyToolbar(Context context) {
         this(context, null);
@@ -44,14 +39,12 @@ public class MyToolbar extends Toolbar {
     public MyToolbar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
-
-
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MyToolbar, defStyleAttr, 0);
+        TintTypedArray typedArray = TintTypedArray.obtainStyledAttributes(getContext(), attrs, R.styleable.MyToolbar, defStyleAttr, 0);
         Drawable drawable = typedArray.getDrawable(R.styleable.MyToolbar_right_img);
 
         if (drawable != null) {
-            mRightButton.setBackground(drawable);
             mRightButton.setVisibility(VISIBLE);
+            mRightButton.setBackground(drawable);
         }
 
         typedArray.recycle();
@@ -60,8 +53,10 @@ public class MyToolbar extends Toolbar {
 
     private void init() {
         mView = LayoutInflater.from(getContext()).inflate(R.layout.my_toolbar, null);
-        ButterKnife.bind(this, mView);
-        LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_VERTICAL);
+        LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        mSearchEditText = (EditText) mView.findViewById(R.id.et_search);
+        mTitleText = (TextView) mView.findViewById(R.id.tv_title);
+        mRightButton = (TextView) mView.findViewById(R.id.btn_right);
         addView(mView, params);
 
     }
@@ -89,9 +84,9 @@ public class MyToolbar extends Toolbar {
 
     public void setRightButtonText(String text) {
         if (null != mRightButton) {
+            mSearchEditText.setVisibility(GONE);
             mRightButton.setVisibility(VISIBLE);
             mRightButton.setText(text);
-            mSearchEditText.setVisibility(GONE);
         }
     }
 

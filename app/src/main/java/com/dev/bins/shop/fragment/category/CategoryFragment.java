@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GestureDetectorCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,7 +35,7 @@ import rx.Subscription;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CategoryFragment extends BaseFragment {
+public class CategoryFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     List<Category> mCategories = new ArrayList<>();
     List<GoodsItem> mCategoryDatas = new ArrayList<>();
@@ -46,7 +47,8 @@ public class CategoryFragment extends BaseFragment {
     RecyclerView mItemRecyclerView;
     @BindView(R.id.content)
     RecyclerView mContentRecyclerView;
-
+    @BindView(R.id.swipe_content)
+    SwipeRefreshLayout mContentRefresh;
     CategoryContentAdapter mContentAdapter;
     CategoryItemAdapter mItemAdapter;
     GestureDetectorCompat mItemGestureDetectorCompat;
@@ -81,6 +83,7 @@ public class CategoryFragment extends BaseFragment {
     }
 
     private void initCategoryContent(View view) {
+        mContentRefresh.setOnRefreshListener(this);
         mContentAdapter = new CategoryContentAdapter(mCategoryDatas);
         mContentRecyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
         mContentRecyclerView.setAdapter(mContentAdapter);
@@ -96,6 +99,7 @@ public class CategoryFragment extends BaseFragment {
         Subscriber<Goods> subscriber = new Subscriber<Goods>() {
             @Override
             public void onCompleted() {
+                mContentRefresh.setRefreshing(false);
                 mContentAdapter.notifyDataSetChanged();
             }
 
@@ -205,5 +209,10 @@ public class CategoryFragment extends BaseFragment {
         if (null != mSubscriptions) {
             mSubscriptions.unsubscribe();
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        loadData();
     }
 }

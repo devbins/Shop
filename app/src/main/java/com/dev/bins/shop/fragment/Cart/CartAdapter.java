@@ -6,11 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dev.bins.shop.R;
 import com.dev.bins.shop.bean.Cart;
+import com.dev.bins.shop.bean.GoodsItem;
 import com.dev.bins.shop.widget.CountView;
 import com.squareup.picasso.Picasso;
 
@@ -27,11 +29,12 @@ import butterknife.ButterKnife;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
 
 
-    private List<Cart> mCards;
+    private List<GoodsItem> mCards;
     private Context mContext;
-
-    public CartAdapter() {
-        mCards = new ArrayList<>();
+    CartFragment mCartFragment;
+    public CartAdapter(List<GoodsItem> cards, CartFragment cartFragment) {
+        this.mCards = cards;
+        mCartFragment = cartFragment;
     }
 
     @Override
@@ -41,16 +44,36 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
     }
 
     @Override
-    public void onBindViewHolder(Holder holder, int position) {
+    public void onBindViewHolder(Holder holder, final int position) {
 
-        Cart cart = mCards.get(position);
+        GoodsItem cart = mCards.get(position);
         holder.cb.setChecked(cart.isChecked());
         Picasso.with(mContext).load(cart.getImgUrl()).into(holder.iv);
         holder.tvName.setText(cart.getName());
         holder.tvPrice.setText(String.valueOf(cart.getPrice()));
         holder.countView.setmCount(cart.getCount());
+        holder.cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mCards.get(position).setChecked(isChecked);
+                mCards.get(position).save();
+            }
+        });
+        holder.countView.setmOnCountChangeListener(new CountView.onCountChangeListener() {
+            @Override
+            public void onChnage(int count) {
+                if (0 == count){
+                    mCards.get(position).delete();
+                }else {
+                    mCards.get(position).setCount(count);
+                    mCards.get(position).save();
+                }
+                mCartFragment.calcPrice();
+            }
+        });
 
     }
+
 
     @Override
     public int getItemCount() {

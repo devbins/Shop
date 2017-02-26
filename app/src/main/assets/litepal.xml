@@ -26,14 +26,16 @@
         create tables for each mapping class. The supported fields
         defined in models will be mapped into columns.
         For example:
-        <goods>
+        <list>
             <mapping class="com.test.model.Reader" />
             <mapping class="com.test.model.Magazine" />
-        </goods>
+        </list>
     -->
-    <goods>
+    <list>
+        <mapping class="com.dev.bins.shop.bean.GoodsItem" />
+        <mapping class="com.dev.bins.shop.bean.Cart" />
 
-    </goods>
+    </list>
 
     <!--
         Define where the .db file should be. "internal" means the .db file
