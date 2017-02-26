@@ -34,7 +34,7 @@
     <list>
         <mapping class="com.dev.bins.shop.bean.GoodsItem" />
         <mapping class="com.dev.bins.shop.bean.Cart" />
-
+        <mapping class="com.dev.bins.shop.bean.OrderAddress"/>
     </list>
 
     <!--
