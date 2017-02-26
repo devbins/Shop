@@ -4,17 +4,29 @@
     <meta charset="UTF-8">
     <title>Index</title>
     <script>
-        function show(){
-            app.show()
+        function add(){
+            var name = "mac"
+            var url = "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1490981341,2458377782&fm=23&gp=0.jpg";
+            var desc = "MacBookPro"
+            var price = 10000.0
+            app.add(name,url,desc,price)
         }
         function change(){
             var p = document.getElementById('p');
             p.style.color = 'red';
         }
     </script>
+
+    <style>
+        .img{
+              width:200px
+              heoght:150px
+        }
+    </style>
 </head>
 <body>
+    <img class="img" src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1490981341,2458377782&fm=23&gp=0.jpg">
     <p id="p">There is a test page</p>
-    <button onclick="show()">Toast</button>
+    <button onclick="add()">添加到购物车</button>
 </body>
 </html>

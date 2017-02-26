@@ -9,6 +9,12 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.dev.bins.shop.bean.GoodsItem;
+
+import org.litepal.crud.DataSupport;
+
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -46,8 +52,20 @@ public class ShopDetailActivity extends AppCompatActivity {
 
     class JS {
         @JavascriptInterface
-        public void show() {
+        public void add(String name,String url,String desc,float price) {
             Toast.makeText(ShopDetailActivity.this, "form html", Toast.LENGTH_SHORT).show();
+            List<GoodsItem> goodsItems = DataSupport.where("name = ?", name).find(GoodsItem.class);
+            if (goodsItems.size()>0) {
+                GoodsItem good = goodsItems.get(0);
+                int count = good.getCount();
+                good.setCount(++count);
+                good.update(good.getId());
+            } else {
+                GoodsItem good = new GoodsItem(name,url,desc,price);
+                good.setCount(1);
+                good.setChecked(true);
+                good.save();
+            }
         }
 
         @JavascriptInterface

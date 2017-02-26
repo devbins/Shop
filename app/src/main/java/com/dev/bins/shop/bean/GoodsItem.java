@@ -6,7 +6,7 @@ import org.litepal.crud.DataSupport;
  * Created by bin on 25/02/2017.
  */
 
-public class GoodsItem extends DataSupport{
+public class GoodsItem extends DataSupport {
 
 
     private long id;
@@ -16,6 +16,28 @@ public class GoodsItem extends DataSupport{
     private float price;
     private int count;
     private boolean isChecked;
+
+    public GoodsItem() {
+    }
+
+    public GoodsItem(GoodsItem goodsItem) {
+        this(goodsItem.getId(), goodsItem.getName(), goodsItem.getImgUrl(), goodsItem.getDesc(), goodsItem.getPrice());
+    }
+
+    public GoodsItem(long id, String name, String imgUrl, String desc, float price) {
+        this.id = id;
+        this.name = name;
+        this.imgUrl = imgUrl;
+        this.desc = desc;
+        this.price = price;
+    }
+
+    public GoodsItem(String name, String imgUrl, String desc, float price) {
+        this.name = name;
+        this.imgUrl = imgUrl;
+        this.desc = desc;
+        this.price = price;
+    }
 
     public int getCount() {
         return count;
@@ -32,24 +54,6 @@ public class GoodsItem extends DataSupport{
     public void setChecked(boolean checked) {
         isChecked = checked;
     }
-
-
-    public GoodsItem() {
-    }
-
-    public GoodsItem(GoodsItem goodsItem){
-        this(goodsItem.getId(),goodsItem.getName(),goodsItem.getImgUrl(),goodsItem.getDesc(),goodsItem.getPrice());
-    }
-
-
-    public GoodsItem(long id, String name, String imgUrl, String desc, float price) {
-        this.id = id;
-        this.name = name;
-        this.imgUrl = imgUrl;
-        this.desc = desc;
-        this.price = price;
-    }
-
 
     public long getId() {
         return id;
