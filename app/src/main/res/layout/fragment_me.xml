@@ -26,7 +26,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/colorPrimary"
                 app:layout_collapseMode="pin"
-                app:title="@string/me"/>
+                app:title="@string/me" />
 
             <ImageView
                 android:id="@+id/avatar"
@@ -45,6 +45,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
             android:orientation="vertical">
 
             <TextView
@@ -52,6 +53,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:drawableLeft="@mipmap/order"
+                android:gravity="center_vertical"
                 android:text="@string/myOrder"
                 android:textSize="20sp" />
 
@@ -61,6 +64,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:drawableLeft="@mipmap/addr"
+                android:gravity="center_vertical"
                 android:text="@string/address"
                 android:textSize="20sp" />
 
