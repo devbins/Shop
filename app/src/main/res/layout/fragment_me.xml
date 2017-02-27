@@ -14,7 +14,12 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways|snap">
+            android:fitsSystemWindows="true"
+            android:id="@+id/collapsingtoolbarlayout"
+            app:collapsedTitleTextAppearance="@android:color/black"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:title="@string/me">
 
 
             <ImageView
@@ -22,24 +27,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/mac"
-                app:layout_collapseMode="parallax" />
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.6" />
 
-            <com.dev.bins.shop.widget.MyToolbar
+            <android.support.v7.widget.Toolbar
                 android:id="@+id/me_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="bottom"
+                android:fitsSystemWindows="true"
+                android:gravity="center"
                 app:layout_collapseMode="pin"
-                app:title="@string/me" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/avatar"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_launcher"
-                app:civ_border_color="#FF000000"
-                app:civ_border_width="2dp" />
+                android:src="@drawable/avatar"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -54,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <TextView

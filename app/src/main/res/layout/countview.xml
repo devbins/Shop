@@ -8,6 +8,7 @@
         android:id="@+id/btn_del"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_light"
         android:text="-"
         android:textSize="20sp" />
 
@@ -22,6 +23,7 @@
         android:id="@+id/btn_add"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_light"
         android:text="+"
         android:textSize="20sp" />
 </LinearLayout>
