@@ -73,7 +73,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         mTvOrder.setOnClickListener(this);
         mTvAddress.setOnClickListener(this);
-        mCollapsingToolbarLayout.setTitle(getString(R.string.me));
         Picasso.with(getContext())
                 .load(R.drawable.avatar_bg)
         .transform(new BlurTransformation(getContext()))
@@ -84,9 +83,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.toolbar:
-
-                break;
             case R.id.tv_order:
                 Intent intent = new Intent(getContext(), OrderActivity.class);
                 startActivity(intent);

@@ -1,55 +1,63 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.dev.bins.shop.fragment.Cart.CartFragment">
 
-    <com.dev.bins.shop.widget.MyToolbar
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:id="@+id/cart_toolbar"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:title="@string/cart"/>
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/cart_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title="@string/cart" />
+    </android.support.design.widget.AppBarLayout>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/cart_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/rl"
-        android:layout_marginTop="?attr/actionBarSize"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <RelativeLayout
-        android:background="@android:color/darker_gray"
         android:id="@+id/rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="@android:color/darker_gray">
 
         <CheckBox
             android:id="@+id/cb"
-            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="@string/select_all" />
 
         <TextView
-            android:textSize="20sp"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
             android:id="@+id/tv_total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/cb" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/cb"
+            android:textSize="20sp" />
 
         <Button
-            android:layout_margin="3dp"
-            android:text="@string/calc"
-            android:background="@drawable/buy"
             android:id="@+id/btn_calc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            android:layout_margin="3dp"
+            android:background="@drawable/buy"
+            android:text="@string/calc"
+            android:textSize="20sp" />
     </RelativeLayout>
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
