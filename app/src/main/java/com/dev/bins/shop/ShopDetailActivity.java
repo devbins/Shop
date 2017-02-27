@@ -1,7 +1,8 @@
 package com.dev.bins.shop;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
@@ -24,6 +25,8 @@ public class ShopDetailActivity extends AppCompatActivity {
     @BindView(R.id.webview)
     WebView mWebView;
 
+    @BindView(R.id.shopdetail_toolbar)
+    Toolbar mToolbar;
     @BindView(R.id.js)
     Button btnJs;
     private JS js;
@@ -34,7 +37,7 @@ public class ShopDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shop_detail);
         ButterKnife.bind(this);
         String id = getIntent().getStringExtra("id");
-
+        setSupportActionBar(mToolbar);
         WebSettings settings = mWebView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setBlockNetworkImage(false);
@@ -52,20 +55,20 @@ public class ShopDetailActivity extends AppCompatActivity {
 
     class JS {
         @JavascriptInterface
-        public void add(String name,String url,String desc,float price) {
-            Toast.makeText(ShopDetailActivity.this, "form html", Toast.LENGTH_SHORT).show();
+        public void add(String name, String url, String desc, float price) {
             List<GoodsItem> goodsItems = DataSupport.where("name = ?", name).find(GoodsItem.class);
-            if (goodsItems.size()>0) {
+            if (goodsItems.size() > 0) {
                 GoodsItem good = goodsItems.get(0);
                 int count = good.getCount();
                 good.setCount(++count);
                 good.update(good.getId());
             } else {
-                GoodsItem good = new GoodsItem(name,url,desc,price);
+                GoodsItem good = new GoodsItem(name, url, desc, price);
                 good.setCount(1);
                 good.setChecked(true);
                 good.save();
             }
+            Toast.makeText(ShopDetailActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
         }
 
         @JavascriptInterface

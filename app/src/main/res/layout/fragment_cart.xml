@@ -42,8 +42,9 @@
             android:layout_toRightOf="@id/cb" />
 
         <Button
+            android:layout_margin="3dp"
             android:text="@string/calc"
-            android:background="@android:color/holo_red_light"
+            android:background="@drawable/buy"
             android:id="@+id/btn_calc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

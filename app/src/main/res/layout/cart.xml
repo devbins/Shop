@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="5dp"
     app:cardElevation="3dp"
-    app:contentPadding="2dp"
+    app:contentPadding="3dp"
+    android:layout_marginTop="3dp"
     android:orientation="vertical">
 
 

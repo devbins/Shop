@@ -8,11 +8,12 @@
     android:orientation="vertical"
     tools:context="com.dev.bins.shop.ShopDetailActivity">
 
-    <com.dev.bins.shop.widget.MyToolbar
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/shopdetail_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
-        app:title="@string/shop_detail"></com.dev.bins.shop.widget.MyToolbar>
+        app:title="@string/shop_detail"></android.support.v7.widget.Toolbar>
 
     <WebView
         android:id="@+id/webview"
