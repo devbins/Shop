@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,7 @@ public class CartFragment extends BaseFragment {
     double mTotalPrice = 0;
     CartAdapter mCartAdapter;
     private List<GoodsItem> mCards = new ArrayList<>();
+    private ItemTouchHelper mHelper;
 
     public CartFragment() {
         // Required empty public constructor
@@ -78,6 +80,21 @@ public class CartFragment extends BaseFragment {
         mCartAdapter = new CartAdapter(mCards, this);
         mCartRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
         mCartRecyclerView.setAdapter(mCartAdapter);
+        mHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                mCards.remove(position);
+                mCartAdapter.notifyItemRemoved(position);
+                calcPrice();
+            }
+        });
+        mHelper.attachToRecyclerView(mCartRecyclerView);
         mCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
