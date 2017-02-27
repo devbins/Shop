@@ -80,7 +80,7 @@ public class CartFragment extends BaseFragment {
         mCartAdapter = new CartAdapter(mCards, this);
         mCartRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
         mCartRecyclerView.setAdapter(mCartAdapter);
-        mHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+        mHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 return false;
@@ -89,6 +89,7 @@ public class CartFragment extends BaseFragment {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
+                mCards.get(position).delete();
                 mCards.remove(position);
                 mCartAdapter.notifyItemRemoved(position);
                 calcPrice();
