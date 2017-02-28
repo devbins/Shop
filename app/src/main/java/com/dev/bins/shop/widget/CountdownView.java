@@ -3,8 +3,6 @@ package com.dev.bins.shop.widget;
 import android.os.CountDownTimer;
 import android.widget.TextView;
 
-import com.dev.bins.shop.R;
-
 /**
  * Created by bin on 27/02/2017.
  */
