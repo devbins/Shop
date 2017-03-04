@@ -2,6 +2,7 @@
 import web
 import json
 import sqlite3 as db
+import hashlib
 urls = (
     '/','index',
     '/img','img',
@@ -10,15 +11,30 @@ urls = (
     '/recommend','Recommend',
     '/hot','Hot',
     '/category/list','Clist',
-    '/category','Category'
+    '/category','Category',
+    '/login','Login'
 )
 DB = web.database(dbn='sqlite', db='shop', user='', pw='')
 class index:
     def GET(self):
-        return "你好,世界"
+        return "something wrong"
     def POST(self):
-        return 'from post'
+        return 'something wrong'
 
+
+class Login:
+    def POST(self):
+        in = web.input()
+        m = hashlib.md5()
+        m.update(pwd = in['pwd'])
+        pwd = m.hexdigest()
+        data = sql().cursor.execute("select * from user where phone=%s"%(in['phone']))
+        m.update(data['pwd'])
+        oldpwd = m.hexdigest()
+        errorcode = cmp(pwd,oldpwd)
+        return json.dumps({'errorcode':errorcode})
+       
+    
 class img:
     def GET(self):
         var = web.input()

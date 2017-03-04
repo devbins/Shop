@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onNext(BaseBean baseBean) {
                     int errorCode = baseBean.getErrorCode();
-                    
+
                 }
             };
             NetworkManager.getInstance()
