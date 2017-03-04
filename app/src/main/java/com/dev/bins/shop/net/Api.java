@@ -23,19 +23,25 @@ public interface Api {
 
     /**
      * @param phone 电话号码
-     * @param pwd 密码
+     * @param pwd   密码
      * @return 返回注册结果
      */
     @FormUrlEncoded
     @POST("login")
     Observable<BaseBean> login(@Field("phone") String phone, @Field("pwd") String pwd);
 
+    /**
+     * @param phone 电话号码
+     * @param pwd   密码
+     * @return
+     */
     @FormUrlEncoded
     @POST("reg")
     Observable<BaseBean> register(@Field("phone") String phone, @Field("pwd") String pwd);
 
     /**
      * 滚动条
+     *
      * @return
      */
     @GET("Banner")
@@ -43,6 +49,7 @@ public interface Api {
 
     /**
      * 推荐
+     *
      * @return
      */
     @GET("recommend")
@@ -50,7 +57,8 @@ public interface Api {
 
     /**
      * 热卖
-     * @param page 当前页
+     *
+     * @param page     当前页
      * @param pageSize 每页大小
      * @return
      */
@@ -59,6 +67,7 @@ public interface Api {
 
     /**
      * 分类列表
+     *
      * @return
      */
     @GET("category/list")
@@ -66,8 +75,9 @@ public interface Api {
 
     /**
      * 分类
-     * @param cid 分类ID
-     * @param curPage 当前页
+     *
+     * @param cid      分类ID
+     * @param curPage  当前页
      * @param pageSize 每页大小
      * @return
      */

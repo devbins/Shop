@@ -7,6 +7,7 @@ import com.dev.bins.shop.bean.Goods;
 import com.dev.bins.shop.bean.Recommend;
 
 import java.util.List;
+import java.util.StringTokenizer;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -50,6 +51,10 @@ public class NetworkManager {
 
     public Subscription login(Subscriber<BaseBean> subscriber, String phone, String pwd) {
         return getData(mApi.login(phone, pwd), subscriber);
+    }
+
+    public Subscription reg(Subscriber<BaseBean> subscriber, String phone,String pwd){
+        return getData(mApi.register(phone,pwd),subscriber);
     }
 
     public Subscription getBanner(Subscriber<List<Banner>> subscriber) {
