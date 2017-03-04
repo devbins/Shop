@@ -12,6 +12,9 @@ import android.widget.TextView;
 import com.dev.bins.shop.bean.BaseBean;
 import com.dev.bins.shop.net.NetworkManager;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -32,11 +35,14 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.tv_forget_pwd)
     TextView mTextViewForgetPwd;
 
+    private Pattern mPattern;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        mPattern = Pattern.compile("^[1][3,4,5,8][0-9]{9}$");
     }
 
 
@@ -46,6 +52,10 @@ public class LoginActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(mEditTextPhone.getText().toString().trim())) {
             mEditTextPhone.setError(getString(R.string.error_empty));
             hasEmpty = true;
+        }
+        if (!mPattern.matcher(mEditTextPhone.getText().toString().trim()).matches()) {
+            mEditTextPhone.setError(getString(R.string.error_phone));
+            return;
         }
         if (TextUtils.isEmpty(mEditTextPwd.getText().toString().trim())) {
             mEditTextPwd.setError(getString(R.string.error_empty));
