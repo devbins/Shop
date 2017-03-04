@@ -12,23 +12,38 @@ urls = (
     '/hot','Hot',
     '/category/list','Clist',
     '/category','Category',
-    '/login','Login'
+    '/login','Login',
+    '/reg','Reg'
 )
 DB = web.database(dbn='sqlite', db='shop', user='', pw='')
 class index:
     def GET(self):
-        return "something wrong"
+        return "welcome"
     def POST(self):
-        return 'something wrong'
+        return 'welcome'
 
 
+class Reg:
+    def POST(self):
+        in_data = web.input()
+        phone = in_data['phone']
+        pwd = in_data['pwd']
+        m = hashlib.md5()
+        m.update(pwd)
+        pwd = m.hexdigest()
+        sql_instruct = "insert into user ('phone','pwd') values('%s','%s');"%(phone,pwd)
+        print sql_instruct
+        res = sql().cursor.execute(sql_instruct)
+        return json.dumps({'errorcode':0})
+        
+    
 class Login:
     def POST(self):
-        in = web.input()
+        in_data = web.input()
         m = hashlib.md5()
-        m.update(pwd = in['pwd'])
+        m.update(in_data['pwd'])
         pwd = m.hexdigest()
-        data = sql().cursor.execute("select * from user where phone=%s"%(in['phone']))
+        data = sql().cursor.execute("select * from user where phone=%s"%(in_data['phone']))
         m.update(data['pwd'])
         oldpwd = m.hexdigest()
         errorcode = cmp(pwd,oldpwd)
