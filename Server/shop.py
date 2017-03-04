@@ -28,11 +28,7 @@ class Reg:
         in_data = web.input()
         phone = in_data['phone']
         pwd = in_data['pwd']
-        m = hashlib.md5()
-        m.update(pwd)
-        pwd = m.hexdigest()
         sql_instruct = "insert into user ('phone','pwd') values('%s','%s');"%(phone,pwd)
-        print sql_instruct
         res = sql().cursor.execute(sql_instruct)
         return json.dumps({'errorcode':0})
         
