@@ -1,13 +1,17 @@
 package com.dev.bins.shop.net;
 
 import com.dev.bins.shop.bean.Banner;
+import com.dev.bins.shop.bean.BaseBean;
 import com.dev.bins.shop.bean.Category;
 import com.dev.bins.shop.bean.Goods;
 import com.dev.bins.shop.bean.Recommend;
 
 import java.util.List;
 
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -16,6 +20,10 @@ import rx.Observable;
  */
 public interface Api {
     String LOCAL_URL = "http://192.168.1.118:8080/";
+
+    @FormUrlEncoded
+    @POST("login")
+    Observable<BaseBean> login(@Field("phone") String phone, @Field("pwd") String pwd);
 
 
     /**

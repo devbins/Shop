@@ -156,24 +156,24 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
         String phone = mEditTextPhone.getText().toString().trim();
         String addr = mTextViewAdd.getText().toString().trim();
         String address = mEditTextAddress.getText().toString().trim();
-        boolean isEmpty = false;
+        boolean hasEmpty = false;
         if (name.isEmpty()) {
             mEditTextName.setError(getString(R.string.error_empty));
-            isEmpty = true;
+            hasEmpty = true;
         }
         if (phone.isEmpty()) {
             mEditTextPhone.setError(getString(R.string.error_empty));
-            isEmpty = true;
+            hasEmpty = true;
         }
         if (addr.isEmpty()) {
             mTextViewAdd.setError(getString(R.string.error_empty));
-            isEmpty = true;
+            hasEmpty = true;
         }
         if (address.isEmpty()) {
             mEditTextAddress.setError(getString(R.string.error_empty));
-            isEmpty = true;
+            hasEmpty = true;
         }
-        if (!isEmpty) {
+        if (!hasEmpty) {
             OrderAddress orderAddress = new OrderAddress(name, phone, addr, address);
             orderAddress.save();
         }

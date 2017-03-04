@@ -9,9 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.dev.bins.shop.bean.BaseBean;
+import com.dev.bins.shop.net.NetworkManager;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Subscriber;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -38,12 +42,38 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_login)
     public void login(View view) {
+        boolean hasEmpty = false;
         if (TextUtils.isEmpty(mEditTextPhone.getText().toString().trim())) {
             mEditTextPhone.setError(getString(R.string.error_empty));
+            hasEmpty = true;
         }
         if (TextUtils.isEmpty(mEditTextPwd.getText().toString().trim())) {
             mEditTextPwd.setError(getString(R.string.error_empty));
+            hasEmpty = true;
         }
+        if (!hasEmpty) {
+            Subscriber<BaseBean> subscriber = new Subscriber<BaseBean>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(BaseBean baseBean) {
+                    int errorCode = baseBean.getErrorCode();
+                    
+                }
+            };
+            NetworkManager.getInstance()
+                    .login(subscriber, mEditTextPhone.getText().toString().trim(),
+                            mEditTextPwd.getText().toString().trim());
+        }
+
     }
 
     @OnClick(R.id.tv_forget_pwd)

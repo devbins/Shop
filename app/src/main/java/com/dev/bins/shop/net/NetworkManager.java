@@ -1,6 +1,7 @@
 package com.dev.bins.shop.net;
 
 import com.dev.bins.shop.bean.Banner;
+import com.dev.bins.shop.bean.BaseBean;
 import com.dev.bins.shop.bean.Category;
 import com.dev.bins.shop.bean.Goods;
 import com.dev.bins.shop.bean.Recommend;
@@ -47,48 +48,27 @@ public class NetworkManager {
     }
 
 
+    public Subscription login(Subscriber<BaseBean> subscriber, String phone, String pwd) {
+        return getData(mApi.login(phone, pwd), subscriber);
+    }
+
     public Subscription getBanner(Subscriber<List<Banner>> subscriber) {
-//        return mApi.getBanner()
-//                .subscribeOn(Schedulers.io())
-//                .unsubscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(subscriber);
         return getData(mApi.getBanner(), subscriber);
     }
 
     public Subscription getRecommend(Subscriber<List<Recommend>> subscriber) {
-//        return mApi.getRecommend()
-//                .subscribeOn(Schedulers.io())
-//                .unsubscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(subscriber);
         return getData(mApi.getRecommend(), subscriber);
     }
 
     public Subscription getGoods(Subscriber<Goods> subscriber, int page, int pageSize) {
-//        return mApi.getGoodsWithPage(page, pageSize)
-//                .subscribeOn(Schedulers.io())
-//                .unsubscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(subscriber);
         return getData(mApi.getGoodsWithPage(page, pageSize), subscriber);
     }
 
     public Subscription getCategory(Subscriber<List<Category>> subscriber) {
-//        return mApi.getCategory()
-//                .subscribeOn(Schedulers.io())
-//                .unsubscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(subscriber);
         return getData(mApi.getCategory(), subscriber);
     }
 
     public Subscription getCategoryData(Subscriber<Goods> subscriber, int cid, int curPage, int pageSize) {
-//        return mApi.getCategoryData(cid,curPage,pageSize)
-//                .subscribeOn(Schedulers.io())
-//                .unsubscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(subscriber);
         return getData(mApi.getCategoryData(cid, curPage, pageSize), subscriber);
     }
 
