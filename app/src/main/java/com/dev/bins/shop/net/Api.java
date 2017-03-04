@@ -21,10 +21,18 @@ import rx.Observable;
 public interface Api {
     String LOCAL_URL = "http://192.168.1.118:8080/";
 
+    /**
+     * @param phone 电话号码
+     * @param pwd 密码
+     * @return 返回注册结果
+     */
     @FormUrlEncoded
     @POST("login")
     Observable<BaseBean> login(@Field("phone") String phone, @Field("pwd") String pwd);
 
+    @FormUrlEncoded
+    @POST("reg")
+    Observable<BaseBean> register(@Field("phone") String phone, @Field("pwd") String pwd);
 
     /**
      * 滚动条
