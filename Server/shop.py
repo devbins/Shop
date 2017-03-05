@@ -1,7 +1,7 @@
 # -*- coding=utf-8 -*-
 import web
 import json
-import sqlite3 as db
+import sqlite3 as database
 import hashlib
 
 #errorcode
@@ -45,13 +45,11 @@ class Reg:
 class Login:
     def POST(self):
         in_data = web.input()
-        m = hashlib.md5()
-        m.update(in_data['pwd'])
-        pwd = m.hexdigest()
-        #data = sql().cursor.execute("select * from user where phone=%s"%(in_data['phone']))
-        data = db.select('user',where="phone=$phone",vars={'phone':in_data['phone']})
-        m.update(data['pwd'])
-        oldpwd = m.hexdigest()
+        oldpwd = in_data['phone']
+        data = sql().cursor.execute("select * from user where phone=%s"%(in_data['phone']))
+        #data = db.select('user',where="phone=$phone",vars={'phone':in_data['phone']})
+        pwd = data.fetchone()[2]
+        #pwd = data[2]
         errorcode = cmp(pwd,oldpwd)
         return json.dumps({'errorcode':errorcode})
        
@@ -146,7 +144,7 @@ class Clist:
 
 class sql:
     def __init__(self):
-        self.conn = db.connect('shop.db')
+        self.conn = database.connect('shop.db')
         self.cursor = self.conn.cursor()
         #self.cursor.execute("""create table banner
         #    (id integer primary key,name varchar(20),imgUrl varchar(128))
