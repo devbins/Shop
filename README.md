@@ -6,7 +6,7 @@
 
 ## 使用到的技术
 
-Material Design、RxJava、Retrofit、ButterKnife、Picasso、Gson
+Material Design、RxJava、Retrofit、ButterKnife、Picasso、Gson、LitePal
 
 ## 使用到的库
 
@@ -16,6 +16,7 @@ Material Design、RxJava、Retrofit、ButterKnife、Picasso、Gson
 - [Picasso](https://github.com/square/picasso)
 - [Gson](https://github.com/google/gson)
 - [AndroidImageSlider](https://github.com/daimajia/AndroidImageSlider)
+- [LitePal](https://github.com/LitePalFramework/LitePal)
 
 ## License
 
