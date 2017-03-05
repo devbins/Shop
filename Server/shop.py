@@ -37,8 +37,8 @@ class Reg:
         pwd = in_data['pwd']
         #sql_instruct = "insert into user ('phone','pwd') values('%s','%s');"%(phone,pwd)
         #res = sql().cursor.execute(sql_instruct)
-        res = db.insert('user',phone=phone,pwd=pwd)
-        print dir(res)
+        phones = db.select('user',where="phone=$phone",vars={'phone':phone})
+        db.insert('user',phone=phone,pwd=pwd)
         return json.dumps({'errorcode':0})
         
 
@@ -50,10 +50,6 @@ class Login:
         pwd = m.hexdigest()
         #data = sql().cursor.execute("select * from user where phone=%s"%(in_data['phone']))
         data = db.select('user',where="phone=$phone",vars={'phone':in_data['phone']})
-        print data
-        print dir(data)
-        if data == null:
-            return json.dumps({'errorcode':1})
         m.update(data['pwd'])
         oldpwd = m.hexdigest()
         errorcode = cmp(pwd,oldpwd)
