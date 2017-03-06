@@ -1,6 +1,7 @@
 package com.dev.bins.shop.fragment.category;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -159,8 +160,9 @@ public class CategoryFragment extends BaseFragment implements SwipeRefreshLayout
                 float x = e.getX();
                 float y = e.getY();
                 View child = mItemRecyclerView.findChildViewUnder(x, y);
+                child.setBackgroundColor(Color.DKGRAY);
                 int position = mItemRecyclerView.getChildLayoutPosition(child);
-                loadData(position+1);
+                loadData(position + 1);
                 return true;
             }
         });

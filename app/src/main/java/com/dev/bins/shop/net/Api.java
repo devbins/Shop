@@ -19,7 +19,7 @@ import rx.Observable;
  * Created by bin on 24/02/2017.
  */
 public interface Api {
-    String LOCAL_URL = "http://192.168.1.118:8080/";
+    String LOCAL_URL = "http://192.168.1.105:8080/";
 
     /**
      * @param phone 电话号码
@@ -44,7 +44,7 @@ public interface Api {
      *
      * @return
      */
-    @GET("Banner")
+    @GET("banner")
     Observable<List<Banner>> getBanner();
 
     /**

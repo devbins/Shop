@@ -20,7 +20,8 @@ urls = (
     '/category/list','Clist',
     '/category','Category',
     '/login','Login',
-    '/reg','Reg'
+    '/reg','Reg',
+    '/image','Image'
 )
 db = web.database(dbn='sqlite', db='shop.db',)
 class index:
@@ -130,6 +131,13 @@ class Category:
         data['totalCount']=i
         data['totalPage']=i/pageSize
         return json.dumps(data)
+
+class Image:
+    def GET(self):
+        get = web.input();
+        name = get.name
+        return open('./img/%s'%(name),'r')
+
 
 class Clist:
     def GET(self):
