@@ -11,17 +11,30 @@ Material Design、RxJava、Retrofit、ButterKnife、Picasso、Gson、LitePal
 ## 使用到的库
 
 - [RxJava](https://github.com/ReactiveX/RxJava)
+
 - [Retrofit](https://github.com/square/retrofit)
+
 - [ButterKnife](https://github.com/JakeWharton/butterknife)
+
 - [Picasso](https://github.com/square/picasso)
+
 - [Gson](https://github.com/google/gson)
+
 - [AndroidImageSlider](https://github.com/daimajia/AndroidImageSlider)
+
 - [LitePal](https://github.com/LitePalFramework/LitePal)
+
+## TODO
+
+- [ ] 添加分享
+- [ ] ​登录逻辑
+- [ ] 订单
+- [ ] 启动页
 
 ## License
 
 ```
-Copyright 2017 bin
+Copyright 2017 binsheng
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

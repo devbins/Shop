@@ -147,7 +147,6 @@ public class CategoryFragment extends BaseFragment implements SwipeRefreshLayout
             }
         };
         NetworkManager.getInstance().getBanner(subscriber);
-//        mSubscriptions.add(subscription);
     }
 
     private void initItemRecycler(View view) {
@@ -160,7 +159,6 @@ public class CategoryFragment extends BaseFragment implements SwipeRefreshLayout
                 float x = e.getX();
                 float y = e.getY();
                 View child = mItemRecyclerView.findChildViewUnder(x, y);
-                child.setBackgroundColor(Color.DKGRAY);
                 int position = mItemRecyclerView.getChildLayoutPosition(child);
                 loadData(position + 1);
                 return true;
