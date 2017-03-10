@@ -7,7 +7,6 @@ import com.dev.bins.shop.bean.Goods;
 import com.dev.bins.shop.bean.Recommend;
 
 import java.util.List;
-import java.util.StringTokenizer;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -18,8 +17,6 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 /**
  * Created by bin on 24/02/2017.
@@ -36,7 +33,7 @@ public class NetworkManager {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .build();
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(Api.LOCAL_URL)
+                .baseUrl(Api.BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

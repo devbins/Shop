@@ -4,6 +4,10 @@
 
 ![shop](./screenshot.gif)
 
+## 说明
+
+服务端采用Python开发，结合web.py框架。只简单的实现了功能。开始打算采用PHP的，后面发现环境都已卸载，刚好这段时间在学Python所以便用Python开发服务端
+
 ## 使用到的技术
 
 Material Design、RxJava、Retrofit、ButterKnife、Picasso、Gson、LitePal
@@ -11,18 +15,13 @@ Material Design、RxJava、Retrofit、ButterKnife、Picasso、Gson、LitePal
 ## 使用到的库
 
 - [RxJava](https://github.com/ReactiveX/RxJava)
-
 - [Retrofit](https://github.com/square/retrofit)
-
 - [ButterKnife](https://github.com/JakeWharton/butterknife)
-
 - [Picasso](https://github.com/square/picasso)
-
 - [Gson](https://github.com/google/gson)
-
 - [AndroidImageSlider](https://github.com/daimajia/AndroidImageSlider)
-
 - [LitePal](https://github.com/LitePalFramework/LitePal)
+- [web.py](http://webpy.org/)
 
 ## TODO
 
