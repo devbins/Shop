@@ -19,7 +19,7 @@ import rx.Observable;
  * Created by bin on 24/02/2017.
  */
 public interface Api {
-    String BASE_URL = "http://192.168.10.115:8080/";
+    String BASE_URL = "http://192.168.1.103:8080/";
 
     /**
      * @param phone 电话号码

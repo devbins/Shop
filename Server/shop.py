@@ -136,6 +136,7 @@ class Image:
     def GET(self):
         get = web.input();
         name = get.name
+        print name
         return open('./img/%s'%(name),'r')
 
 
