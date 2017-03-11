@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -41,7 +42,7 @@ public class HomeFragment extends BaseFragment {
     List<Recommend> mRecommends = new ArrayList<>();
 
     @BindView(R.id.toolbar)
-    MyToolbar mToolbar;
+    Toolbar mToolbar;
     @BindView(R.id.slider)
     SliderLayout mSliderLayout;
     @BindView(R.id.recycler)

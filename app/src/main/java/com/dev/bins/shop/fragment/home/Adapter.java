@@ -42,12 +42,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
         holder.tvTitle.setText(mRecommends.get(position).getName());
         Picasso.with(mContext).load(mRecommends.get(position).getPromote3().getImgUrl()).into(holder.iv1);
         Picasso.with(mContext).load(mRecommends.get(position).getPromote2().getImgUrl()).into(holder.iv2);
-        Picasso.with(mContext).load(mRecommends.get(position).getPromote1().getImgUrl()).fit().into(holder.iv3);
     }
 
     @Override
     public int getItemViewType(int position) {
-        return R.layout.shop1_home;
+        return R.layout.home_item;
     }
 
     @Override
@@ -62,8 +61,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
         ImageView iv1;
         @BindView(R.id.iv2)
         ImageView iv2;
-        @BindView(R.id.iv3)
-        ImageView iv3;
 
         public Holder(View itemView) {
             super(itemView);
