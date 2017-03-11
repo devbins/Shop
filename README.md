@@ -30,6 +30,7 @@ Material Design、RxJava、Retrofit、ButterKnife、Picasso、Gson、LitePal
 - [ ] 订单
 - [ ] 启动页
 - [ ] 动画
+- [ ] 主题切换
 
 ## License
 

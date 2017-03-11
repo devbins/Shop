@@ -7,7 +7,7 @@
         android:title="@string/home" />
     <item
         android:id="@+id/hot"
-        android:icon="@mipmap/icon_hot"
+        android:icon="@mipmap/find"
         android:title="@string/find" />
     <item
         android:id="@+id/category"
