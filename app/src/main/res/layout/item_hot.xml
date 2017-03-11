@@ -16,7 +16,8 @@
         <ImageView
             android:id="@+id/iv"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:layout_height="150dp"
             android:layout_alignParentLeft="true"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp" />

@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="com.dev.bins.shop.fragment.hot.HotFragment">
+    tools:context="com.dev.bins.shop.fragment.find.FindFragment">
 
     <com.dev.bins.shop.widget.MyToolbar
         android:id="@+id/hot_toolbar"
-        app:title="@string/hot"
+        app:title="@string/find"
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"></com.dev.bins.shop.widget.MyToolbar>

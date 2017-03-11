@@ -1,4 +1,4 @@
-package com.dev.bins.shop.fragment.hot;
+package com.dev.bins.shop.fragment.find;
 
 
 import android.os.Bundle;
@@ -24,7 +24,7 @@ import rx.Subscriber;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HotFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class FindFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private List<GoodsItem> mGoods = new ArrayList<>();
     private int curPage = 1;
@@ -32,17 +32,17 @@ public class HotFragment extends BaseFragment implements SwipeRefreshLayout.OnRe
     RecyclerView mRecyclerView;
     @BindView(R.id.swipe)
     SwipeRefreshLayout mSwipe;
-    HotAdapter mAdapter;
+    FindAdapter mAdapter;
 
-    public HotFragment() {
+    public FindFragment() {
         // Required empty public constructor
     }
 
-    public static HotFragment newInstance() {
+    public static FindFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        HotFragment fragment = new HotFragment();
+        FindFragment fragment = new FindFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,7 +57,7 @@ public class HotFragment extends BaseFragment implements SwipeRefreshLayout.OnRe
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mSwipe.setOnRefreshListener(this);
-        mAdapter = new HotAdapter(mGoods);
+        mAdapter = new FindAdapter(mGoods);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mAdapter);
         load(1);

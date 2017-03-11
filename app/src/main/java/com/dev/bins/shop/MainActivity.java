@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import com.dev.bins.shop.fragment.Cart.CartFragment;
 import com.dev.bins.shop.fragment.category.CategoryFragment;
 import com.dev.bins.shop.fragment.home.HomeFragment;
-import com.dev.bins.shop.fragment.hot.HotFragment;
+import com.dev.bins.shop.fragment.find.FindFragment;
 import com.dev.bins.shop.fragment.me.MeFragment;
 
 import java.util.ArrayList;
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
         mFragments.add(HomeFragment.newInstance());
-        mFragments.add(HotFragment.newInstance());
+        mFragments.add(FindFragment.newInstance());
         mFragments.add(CategoryFragment.newInstance());
         mFragments.add(CartFragment.newInstance());
         mFragments.add(MeFragment.newInstance());

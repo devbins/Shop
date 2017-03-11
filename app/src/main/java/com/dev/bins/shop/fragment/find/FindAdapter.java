@@ -1,4 +1,4 @@
-package com.dev.bins.shop.fragment.hot;
+package com.dev.bins.shop.fragment.find;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,10 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dev.bins.shop.R;
-import com.dev.bins.shop.bean.Cart;
 import com.dev.bins.shop.bean.GoodsItem;
 import com.squareup.picasso.Picasso;
 
@@ -22,17 +20,15 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static android.R.attr.id;
-
 /**
  * Created by bin on 25/02/2017.
  */
 
-public class HotAdapter extends RecyclerView.Adapter<HotAdapter.Holder> {
+public class FindAdapter extends RecyclerView.Adapter<FindAdapter.Holder> {
     private List<GoodsItem> mGoods;
     private Context mContext;
 
-    public HotAdapter(List<GoodsItem> goods) {
+    public FindAdapter(List<GoodsItem> goods) {
         this.mGoods = goods;
     }
 

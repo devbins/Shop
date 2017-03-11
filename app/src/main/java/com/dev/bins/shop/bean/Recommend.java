@@ -5,14 +5,7 @@ package com.dev.bins.shop.bean;
  */
 
 public class Recommend {
-
-//    {"promote1":
-//        {"id":17,"name":"手机专享","imgUrl":"http://7mno4h.com2.z0.glb.qiniucdn.com/555c6c90Ncb4fe515.jpg"},
-//        "promote2":{"id":15,"name":"闪购","imgUrl":"http://7mno4h.com2.z0.glb.qiniucdn.com/560a26d2N78974496.jpg"},
-//        "promote3":{"id":11,"name":"团购","imgUrl":"http://7mno4h.com2.z0.glb.qiniucdn.com/560be0c3N9e77a22a.jpg"},
-//        "id":1,"name":"超值购","campaignOne":17,"campaignTwo":15,"campaignThree":11}
-
-
+    
     private long id;
     private String name;
     private Promote promote1;

@@ -131,6 +131,9 @@ public class HomeFragment extends BaseFragment {
         NetworkManager.getInstance().getRecommend(subscriber);
     }
 
+    /**
+     * 获取滚动条
+     */
     private void addBanner() {
         Subscriber<List<Banner>> subscriber = new Subscriber<List<Banner>>() {
             @Override
@@ -155,7 +158,6 @@ public class HomeFragment extends BaseFragment {
             }
         };
         NetworkManager.getInstance().getBanner(subscriber);
-//        mSubscriptions.add(subscription);
     }
 
 

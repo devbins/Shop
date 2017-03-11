@@ -1,5 +1,7 @@
 package com.dev.bins.shop.bean;
 
+import com.dev.bins.shop.net.Api;
+
 /**
  * Created by bin on 25/02/2017.
  */
@@ -27,7 +29,7 @@ public class Promote {
     }
 
     public String getImgUrl() {
-        return imgUrl;
+        return Api.BASE_URL+"image?name="+imgUrl;
     }
 
     public void setImgUrl(String imgUrl) {
