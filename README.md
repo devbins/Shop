@@ -28,7 +28,7 @@ Material Design、RxJava、Retrofit、ButterKnife、Picasso、Gson、LitePal
 - [ ] 添加分享
 - [ ] ​登录逻辑
 - [ ] 订单
-- [ ] 启动页
+- [x] 启动页
 - [ ] 动画
 - [ ] 主题切换
 
