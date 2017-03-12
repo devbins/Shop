@@ -40,19 +40,19 @@ class Reg:
         #res = sql().cursor.execute(sql_instruct)
         phones = db.select('user',where="phone=$phone",vars={'phone':phone})
         db.insert('user',phone=phone,pwd=pwd)
-        return json.dumps({'errorcode':0})
+        return json.dumps({'errorcode':0,'user':{'phone':phone,'avatar':''}})
         
 
 class Login:
     def POST(self):
         in_data = web.input()
         oldpwd = in_data['phone']
-        data = sql().cursor.execute("select * from user where phone=%s"%(in_data['phone']))
-        #data = db.select('user',where="phone=$phone",vars={'phone':in_data['phone']})
-        pwd = data.fetchone()[2]
+        #data = sql().cursor.execute("select * from user where phone=%s"%(in_data['phone']))
+        data = db.select('user',where="phone=$phone",vars={'phone':in_data['phone']})[0]
+        pwd = data.pwd
         #pwd = data[2]
         errorcode = cmp(pwd,oldpwd)
-        return json.dumps({'errorcode':errorcode})
+        return json.dumps({'errorcode':errorcode,'phone':in_data['phone'],'avatar':data.avatar})
        
     
 class img:

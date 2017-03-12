@@ -1,13 +1,17 @@
 package com.dev.bins.shop;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.dev.bins.shop.bean.BaseBean;
+import com.dev.bins.shop.bean.User;
 import com.dev.bins.shop.net.NetworkManager;
+import com.dev.bins.shop.util.UserManager;
 
 import java.util.HashSet;
 import java.util.regex.Pattern;
@@ -53,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if (!hasEmpty) {
-            Subscriber<BaseBean> subscriber = new Subscriber<BaseBean>() {
+            Subscriber<User> subscriber = new Subscriber<User>() {
                 @Override
                 public void onCompleted() {
 
@@ -65,8 +69,17 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onNext(BaseBean baseBean) {
-
+                public void onNext(User user) {
+                    int errorCode = user.getErrorCode();
+                    if (0 == errorCode) {
+                        App.getInstance().setmUser(user);
+                        UserManager.save(getApplicationContext(),user);
+                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(RegisterActivity.this, getString(R.string.reg_error), Toast.LENGTH_SHORT).show();
+                    }
                 }
             };
             NetworkManager.getInstance()

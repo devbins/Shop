@@ -12,8 +12,10 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"></android.support.v7.widget.Toolbar>
 
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
         android:layout_height="wrap_content">
 
         <EditText
@@ -21,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@null"
             android:drawableLeft="@mipmap/phone"
             android:drawablePadding="5dp"
             android:hint="@string/input_phone"
@@ -28,19 +31,21 @@
 
     </android.support.design.widget.TextInputLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:background="@android:color/darker_gray" />-->
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
         android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/et_pwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@null"
             android:drawableLeft="@mipmap/pwd"
             android:drawablePadding="5dp"
             android:hint="@string/input_pwd"

@@ -10,7 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.dev.bins.shop.bean.BaseBean;
+import com.dev.bins.shop.bean.User;
 import com.dev.bins.shop.net.NetworkManager;
+import com.dev.bins.shop.util.UserManager;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -62,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             hasEmpty = true;
         }
         if (!hasEmpty) {
-            Subscriber<BaseBean> subscriber = new Subscriber<BaseBean>() {
+            Subscriber<User> subscriber = new Subscriber<User>() {
                 @Override
                 public void onCompleted() {
 
@@ -74,9 +76,14 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onNext(BaseBean baseBean) {
-                    int errorCode = baseBean.getErrorCode();
-
+                public void onNext(User user) {
+                    int errorCode = user.getErrorCode();
+                    if (errorCode == 0){
+                        UserManager.save(getApplicationContext(),user);
+                        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             };
             NetworkManager.getInstance()

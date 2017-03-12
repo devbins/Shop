@@ -5,6 +5,7 @@ import com.dev.bins.shop.bean.BaseBean;
 import com.dev.bins.shop.bean.Category;
 import com.dev.bins.shop.bean.Goods;
 import com.dev.bins.shop.bean.Recommend;
+import com.dev.bins.shop.bean.User;
 
 import java.util.List;
 
@@ -46,11 +47,11 @@ public class NetworkManager {
     }
 
 
-    public Subscription login(Subscriber<BaseBean> subscriber, String phone, String pwd) {
+    public Subscription login(Subscriber<User> subscriber, String phone, String pwd) {
         return getData(mApi.login(phone, pwd), subscriber);
     }
 
-    public Subscription reg(Subscriber<BaseBean> subscriber, String phone,String pwd){
+    public Subscription reg(Subscriber<User> subscriber, String phone, String pwd){
         return getData(mApi.register(phone,pwd),subscriber);
     }
 

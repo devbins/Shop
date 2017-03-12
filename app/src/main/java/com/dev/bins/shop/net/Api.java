@@ -5,6 +5,7 @@ import com.dev.bins.shop.bean.BaseBean;
 import com.dev.bins.shop.bean.Category;
 import com.dev.bins.shop.bean.Goods;
 import com.dev.bins.shop.bean.Recommend;
+import com.dev.bins.shop.bean.User;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public interface Api {
      */
     @FormUrlEncoded
     @POST("login")
-    Observable<BaseBean> login(@Field("phone") String phone, @Field("pwd") String pwd);
+    Observable<User> login(@Field("phone") String phone, @Field("pwd") String pwd);
 
     /**
      * @param phone 电话号码
@@ -37,7 +38,7 @@ public interface Api {
      */
     @FormUrlEncoded
     @POST("reg")
-    Observable<BaseBean> register(@Field("phone") String phone, @Field("pwd") String pwd);
+    Observable<User> register(@Field("phone") String phone, @Field("pwd") String pwd);
 
     /**
      * 滚动条
