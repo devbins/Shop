@@ -77,6 +77,16 @@ public class GoodsItem extends DataSupport {
         return Api.BASE_URL+"image?name="+imgUrl;
     }
 
+    /**
+     * 由于保存到数据库中或调用getImgUrl从而存到数据库的地址是真实地址，之后在获取不需要拼接BASE_URL
+     * 此方法用于获取从本地数据库获取图片地址
+     * @return
+     */
+    public String getImgUrlFromDatabase(){
+        return imgUrl;
+    }
+
+
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }

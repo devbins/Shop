@@ -48,7 +48,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
 
         GoodsItem cart = mCards.get(position);
         holder.cb.setChecked(cart.isChecked());
-        Picasso.with(mContext).load(cart.getImgUrl()).into(holder.iv);
+        Picasso.with(mContext).load(cart.getImgUrlFromDatabase()).into(holder.iv);
         holder.tvName.setText(cart.getName());
         holder.tvPrice.setText(String.valueOf(cart.getPrice()));
         holder.countView.setmCount(cart.getCount());

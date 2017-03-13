@@ -63,7 +63,7 @@ public interface Api {
      * @param pageSize 每页大小
      * @return
      */
-    @GET("hot")
+    @GET("find")
     Observable<Goods> getGoodsWithPage(@Query("curPage") int page, @Query("pageSize") int pageSize);
 
     /**

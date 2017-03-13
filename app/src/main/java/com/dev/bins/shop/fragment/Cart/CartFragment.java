@@ -35,9 +35,7 @@ import rx.Observable;
 
 import static android.R.attr.data;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class CartFragment extends BaseFragment {
     @BindView(R.id.cart_toolbar)
     Toolbar toolbar;

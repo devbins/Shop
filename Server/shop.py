@@ -16,7 +16,7 @@ urls = (
     '/seeother','seeother',
     '/banner','Banner',
     '/recommend','Recommend',
-    '/hot','Hot',
+    '/find','Find',
     '/category/list','Clist',
     '/category','Category',
     '/login','Login',
@@ -91,7 +91,7 @@ class Recommend:
             data.append(recommend)
         return json.dumps(data)
 
-class Hot:
+class Find:
     def GET(self):
         get = web.input()
         data = {'currentPage':get['curPage'],'pageSize':get['pageSize']}
@@ -136,7 +136,6 @@ class Image:
     def GET(self):
         get = web.input();
         name = get.name
-        print name
         return open('./img/%s'%(name),'r')
 
 
