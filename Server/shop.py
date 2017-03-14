@@ -40,7 +40,7 @@ class Reg:
         #res = sql().cursor.execute(sql_instruct)
         phones = db.select('user',where="phone=$phone",vars={'phone':phone})
         db.insert('user',phone=phone,pwd=pwd)
-        return json.dumps({'errorcode':0,'user':{'phone':phone,'avatar':''}})
+        return json.dumps({'errorcode':0,'errormsg':'','data':{'user':{'phone':phone,'avatar':''}}})
         
 
 class Login:
@@ -52,7 +52,7 @@ class Login:
         pwd = data.pwd
         #pwd = data[2]
         errorcode = cmp(pwd,oldpwd)
-        return json.dumps({'errorcode':errorcode,'phone':in_data['phone'],'avatar':data.avatar})
+        return json.dumps({'errorcode':errorcode,'errormsg':'','data':{'phone':in_data['phone'],'avatar':data.avatar}})
        
     
 class img:
@@ -72,7 +72,7 @@ class Banner:
         for row in banner_data:
             dict = {'id':row.id,'name':row.name,'imgUrl':row.imgUrl}
             data.append(dict)
-        return json.dumps(data)
+        return json.dumps({'errorcode':0,'errormsg':'','data':data})
 
 class Recommend:
     def GET(self):
@@ -89,7 +89,7 @@ class Recommend:
                 recommend['promote%s'%(i)]=promote
                 i = i+1
             data.append(recommend)
-        return json.dumps(data)
+        return json.dumps({'errorcode':0,'errormsg':'','data':data})
 
 class Find:
     def GET(self):
@@ -110,7 +110,7 @@ class Find:
                                   'price':good.price})            
         data['totalCount']=i
         data['totalPage']=i/pageSize+1
-        return json.dumps(data)
+        return json.dumps({'errorcode':0,'errormsg':'','data':data})
 
 class Category:
     def GET(self):
@@ -130,7 +130,7 @@ class Category:
                                   'price':good.price})            
         data['totalCount']=i
         data['totalPage']=i/pageSize
-        return json.dumps(data)
+        return json.dumps({'errorcode':0,'errormsg':'','data':data})
 
 class Image:
     def GET(self):
@@ -146,7 +146,7 @@ class Clist:
         clist = db.select('clist')
         for category in clist:
             data.append({'id':category.id,'name':category.name})
-        return json.dumps(data)
+        return json.dumps({'errorcode':0,'errormsg':'','data':data})
 
 
 
