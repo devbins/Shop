@@ -39,7 +39,7 @@ public class CategoryContentAdapter extends RecyclerView.Adapter<CategoryContent
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        Picasso.with(mContext).load(mCategoryDatas.get(position).getImgUrl()).into(holder.iv);
+        Picasso.with(mContext).load(mCategoryDatas.get(position).getRealImgUrl()).into(holder.iv);
         holder.tvName.setText(mCategoryDatas.get(position).getName());
         holder.tvPrice.setText(String.valueOf(mCategoryDatas.get(position).getPrice()));
     }

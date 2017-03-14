@@ -74,7 +74,7 @@ public class GoodsItem extends DataSupport {
     }
 
     public String getImgUrl() {
-        return Api.BASE_URL+"image?name="+imgUrl;
+        return imgUrl;
     }
 
     /**
@@ -82,8 +82,8 @@ public class GoodsItem extends DataSupport {
      * 此方法用于获取从本地数据库获取图片地址
      * @return
      */
-    public String getImgUrlFromDatabase(){
-        return imgUrl;
+    public String getRealImgUrl(){
+        return Api.BASE_URL+"image?name="+imgUrl;
     }
 
 

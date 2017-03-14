@@ -11,12 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dev.bins.shop.R;
-import com.dev.bins.shop.bean.Cart;
 import com.dev.bins.shop.bean.GoodsItem;
 import com.dev.bins.shop.widget.CountView;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -48,7 +46,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
 
         GoodsItem cart = mCards.get(position);
         holder.cb.setChecked(cart.isChecked());
-        Picasso.with(mContext).load(cart.getImgUrlFromDatabase()).into(holder.iv);
+        Picasso.with(mContext).load(cart.getRealImgUrl()).into(holder.iv);
         holder.tvName.setText(cart.getName());
         holder.tvPrice.setText(String.valueOf(cart.getPrice()));
         holder.countView.setmCount(cart.getCount());

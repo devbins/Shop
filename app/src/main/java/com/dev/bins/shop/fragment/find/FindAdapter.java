@@ -42,7 +42,7 @@ public class FindAdapter extends RecyclerView.Adapter<FindAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(Holder holder, final int position) {
-        Picasso.with(mContext).load(mGoods.get(position).getImgUrl()).into(holder.imageView);
+        Picasso.with(mContext).load(mGoods.get(position).getRealImgUrl()).into(holder.imageView);
         holder.tvName.setText(mGoods.get(position).getName());
         holder.tvPrice.setText(String.valueOf(mGoods.get(position).getPrice()));
         holder.btnBuy.setOnClickListener(new View.OnClickListener() {
