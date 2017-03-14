@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.dev.bins.shop.bean.BaseBean;
+import com.dev.bins.shop.bean.ResponseMsg;
 import com.dev.bins.shop.bean.User;
 import com.dev.bins.shop.net.NetworkManager;
 import com.dev.bins.shop.util.UserManager;
@@ -64,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
             hasEmpty = true;
         }
         if (!hasEmpty) {
-            Subscriber<User> subscriber = new Subscriber<User>() {
+            Subscriber<ResponseMsg<User>> subscriber = new Subscriber<ResponseMsg<User>>() {
                 @Override
                 public void onCompleted() {
 
@@ -76,10 +77,10 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onNext(User user) {
-                    int errorCode = user.getErrorCode();
+                public void onNext(ResponseMsg<User> userResponseMsg) {
+                    int errorCode = userResponseMsg.getErrorCode();
                     if (errorCode == 0){
-                        UserManager.save(getApplicationContext(),user);
+                        UserManager.save(getApplicationContext(),userResponseMsg.getData());
                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                         startActivity(intent);
                         finish();

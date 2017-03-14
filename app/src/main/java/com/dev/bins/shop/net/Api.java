@@ -5,6 +5,7 @@ import com.dev.bins.shop.bean.BaseBean;
 import com.dev.bins.shop.bean.Category;
 import com.dev.bins.shop.bean.Goods;
 import com.dev.bins.shop.bean.Recommend;
+import com.dev.bins.shop.bean.ResponseMsg;
 import com.dev.bins.shop.bean.User;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public interface Api {
      */
     @FormUrlEncoded
     @POST("login")
-    Observable<User> login(@Field("phone") String phone, @Field("pwd") String pwd);
+    Observable<ResponseMsg<User>> login(@Field("phone") String phone, @Field("pwd") String pwd);
 
     /**
      * @param phone 电话号码
@@ -38,7 +39,7 @@ public interface Api {
      */
     @FormUrlEncoded
     @POST("reg")
-    Observable<User> register(@Field("phone") String phone, @Field("pwd") String pwd);
+    Observable<ResponseMsg<User>> register(@Field("phone") String phone, @Field("pwd") String pwd);
 
     /**
      * 滚动条
@@ -46,7 +47,7 @@ public interface Api {
      * @return
      */
     @GET("banner")
-    Observable<List<Banner>> getBanner();
+    Observable<ResponseMsg<List<Banner>>> getBanner();
 
     /**
      * 推荐
@@ -54,7 +55,7 @@ public interface Api {
      * @return
      */
     @GET("recommend")
-    Observable<List<Recommend>> getRecommend();
+    Observable<ResponseMsg<List<Recommend>>> getRecommend();
 
     /**
      * 热卖
@@ -64,7 +65,7 @@ public interface Api {
      * @return
      */
     @GET("find")
-    Observable<Goods> getGoodsWithPage(@Query("curPage") int page, @Query("pageSize") int pageSize);
+    Observable<ResponseMsg<Goods>> getGoodsWithPage(@Query("curPage") int page, @Query("pageSize") int pageSize);
 
     /**
      * 分类列表
@@ -72,7 +73,7 @@ public interface Api {
      * @return
      */
     @GET("category/list")
-    Observable<List<Category>> getCategory();
+    Observable<ResponseMsg<List<Category>>> getCategory();
 
     /**
      * 分类
@@ -83,5 +84,5 @@ public interface Api {
      * @return
      */
     @GET("category")
-    Observable<Goods> getCategoryData(@Query("cid") int cid, @Query("curPage") int curPage, @Query("pageSize") int pageSize);
+    Observable<ResponseMsg<Goods>> getCategoryData(@Query("cid") int cid, @Query("curPage") int curPage, @Query("pageSize") int pageSize);
 }

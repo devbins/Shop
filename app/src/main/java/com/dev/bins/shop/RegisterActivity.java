@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.dev.bins.shop.bean.BaseBean;
+import com.dev.bins.shop.bean.ResponseMsg;
 import com.dev.bins.shop.bean.User;
 import com.dev.bins.shop.net.NetworkManager;
 import com.dev.bins.shop.util.UserManager;
@@ -57,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if (!hasEmpty) {
-            Subscriber<User> subscriber = new Subscriber<User>() {
+            Subscriber<ResponseMsg<User>> subscriber = new Subscriber<ResponseMsg<User>>() {
                 @Override
                 public void onCompleted() {
 
@@ -69,11 +70,11 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onNext(User user) {
-                    int errorCode = user.getErrorCode();
+                public void onNext(ResponseMsg<User> userResponseMsg) {
+                    int errorCode = userResponseMsg.getErrorCode();
                     if (0 == errorCode) {
-                        App.getInstance().setmUser(user);
-                        UserManager.save(getApplicationContext(),user);
+                        App.getInstance().setmUser(userResponseMsg.getData());
+                        UserManager.save(getApplicationContext(), userResponseMsg.getData());
                         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
@@ -82,6 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 }
             };
+
             NetworkManager.getInstance()
                     .reg(subscriber, mEditTextPhone.getText().toString().trim()
                             , mEditTextPwd.getText().toString().trim());

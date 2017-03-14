@@ -5,6 +5,7 @@ import com.dev.bins.shop.bean.BaseBean;
 import com.dev.bins.shop.bean.Category;
 import com.dev.bins.shop.bean.Goods;
 import com.dev.bins.shop.bean.Recommend;
+import com.dev.bins.shop.bean.ResponseMsg;
 import com.dev.bins.shop.bean.User;
 
 import java.util.List;
@@ -47,31 +48,31 @@ public class NetworkManager {
     }
 
 
-    public Subscription login(Subscriber<User> subscriber, String phone, String pwd) {
+    public Subscription login(Subscriber<ResponseMsg<User>> subscriber, String phone, String pwd) {
         return getData(mApi.login(phone, pwd), subscriber);
     }
 
-    public Subscription reg(Subscriber<User> subscriber, String phone, String pwd){
+    public Subscription reg(Subscriber<ResponseMsg<User>> subscriber, String phone, String pwd){
         return getData(mApi.register(phone,pwd),subscriber);
     }
 
-    public Subscription getBanner(Subscriber<List<Banner>> subscriber) {
+    public Subscription getBanner(Subscriber<ResponseMsg<List<Banner>>> subscriber) {
         return getData(mApi.getBanner(), subscriber);
     }
 
-    public Subscription getRecommend(Subscriber<List<Recommend>> subscriber) {
+    public Subscription getRecommend(Subscriber<ResponseMsg<List<Recommend>>> subscriber) {
         return getData(mApi.getRecommend(), subscriber);
     }
 
-    public Subscription getGoods(Subscriber<Goods> subscriber, int page, int pageSize) {
+    public Subscription getGoods(Subscriber<ResponseMsg<Goods>> subscriber, int page, int pageSize) {
         return getData(mApi.getGoodsWithPage(page, pageSize), subscriber);
     }
 
-    public Subscription getCategory(Subscriber<List<Category>> subscriber) {
+    public Subscription getCategory(Subscriber<ResponseMsg<List<Category>>> subscriber) {
         return getData(mApi.getCategory(), subscriber);
     }
 
-    public Subscription getCategoryData(Subscriber<Goods> subscriber, int cid, int curPage, int pageSize) {
+    public Subscription getCategoryData(Subscriber<ResponseMsg<Goods>> subscriber, int cid, int curPage, int pageSize) {
         return getData(mApi.getCategoryData(cid, curPage, pageSize), subscriber);
     }
 

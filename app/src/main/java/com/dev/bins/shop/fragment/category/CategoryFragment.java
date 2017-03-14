@@ -22,6 +22,7 @@ import com.dev.bins.shop.bean.Banner;
 import com.dev.bins.shop.bean.Category;
 import com.dev.bins.shop.bean.Goods;
 import com.dev.bins.shop.bean.GoodsItem;
+import com.dev.bins.shop.bean.ResponseMsg;
 import com.dev.bins.shop.fragment.BaseFragment;
 import com.dev.bins.shop.net.NetworkManager;
 import com.dev.bins.shop.widget.MyToolbar;
@@ -97,7 +98,7 @@ public class CategoryFragment extends BaseFragment implements SwipeRefreshLayout
     }
 
     private void loadData(int cid) {
-        Subscriber<Goods> subscriber = new Subscriber<Goods>() {
+        Subscriber<ResponseMsg<Goods>> subscriber =new Subscriber<ResponseMsg<Goods>>() {
             @Override
             public void onCompleted() {
                 mContentRefresh.setRefreshing(false);
@@ -107,35 +108,37 @@ public class CategoryFragment extends BaseFragment implements SwipeRefreshLayout
             @Override
             public void onError(Throwable e) {
                 e.printStackTrace();
+                mContentRefresh.setRefreshing(false);
             }
 
             @Override
-            public void onNext(Goods goods) {
+            public void onNext(ResponseMsg<Goods> goodsResponseMsg) {
                 mCategoryDatas.clear();
-                mCategoryDatas.addAll(goods.getGoods());
+                mCategoryDatas.addAll(goodsResponseMsg.getData().getGoods());
             }
         };
+
         NetworkManager.getInstance().getCategoryData(subscriber, cid, 1, 10);
 
     }
 
 
     private void addBanner() {
-        Subscriber<List<Banner>> subscriber = new Subscriber<List<Banner>>() {
+        Subscriber<ResponseMsg<List<Banner>>> subscriber = new Subscriber<ResponseMsg<List<Banner>>>() {
             @Override
             public void onCompleted() {
-                System.out.println("complete");
+
             }
 
             @Override
             public void onError(Throwable e) {
-                e.printStackTrace();
+
             }
 
             @Override
-            public void onNext(List<Banner> banners) {
+            public void onNext(ResponseMsg<List<Banner>> listResponseMsg) {
                 mBanner.clear();
-                mBanner.addAll(banners);
+                mBanner.addAll(listResponseMsg.getData());
                 for (Banner banner : mBanner) {
 
                     TextSliderView textSliderView = new TextSliderView(getActivity());
@@ -146,6 +149,7 @@ public class CategoryFragment extends BaseFragment implements SwipeRefreshLayout
                 }
             }
         };
+
         NetworkManager.getInstance().getBanner(subscriber);
     }
 
@@ -182,25 +186,25 @@ public class CategoryFragment extends BaseFragment implements SwipeRefreshLayout
 
             }
         });
-        Subscriber<List<Category>> subscriber = new Subscriber<List<Category>>() {
+        Subscriber<ResponseMsg<List<Category>>> subscriber = new Subscriber<ResponseMsg<List<Category>>>() {
             @Override
             public void onCompleted() {
-                mItemAdapter.notifyDataSetChanged();
+
             }
 
             @Override
             public void onError(Throwable e) {
-                e.printStackTrace();
+
             }
 
             @Override
-            public void onNext(List<Category> category) {
+            public void onNext(ResponseMsg<List<Category>> listResponseMsg) {
                 mCategories.clear();
-                mCategories.addAll(category);
+                mCategories.addAll(listResponseMsg.getData());
+                mItemAdapter.notifyDataSetChanged();
             }
         };
-        Subscription subscription = NetworkManager.getInstance().getCategory(subscriber);
-        mSubscriptions.add(subscription);
+        NetworkManager.getInstance().getCategory(subscriber);
     }
 
     @Override

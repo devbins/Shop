@@ -20,6 +20,7 @@ import com.dev.bins.shop.R;
 import com.dev.bins.shop.ShopDetailActivity;
 import com.dev.bins.shop.bean.Banner;
 import com.dev.bins.shop.bean.Recommend;
+import com.dev.bins.shop.bean.ResponseMsg;
 import com.dev.bins.shop.fragment.BaseFragment;
 import com.dev.bins.shop.net.NetworkManager;
 import com.dev.bins.shop.widget.MyToolbar;
@@ -112,7 +113,7 @@ public class HomeFragment extends BaseFragment {
 
             }
         });
-        Subscriber<List<Recommend>> subscriber = new Subscriber<List<Recommend>>() {
+        Subscriber<ResponseMsg<List<Recommend>>> subscriber = new Subscriber<ResponseMsg<List<Recommend>>>() {
             @Override
             public void onCompleted() {
 
@@ -124,8 +125,8 @@ public class HomeFragment extends BaseFragment {
             }
 
             @Override
-            public void onNext(List<Recommend> recommends) {
-                mRecommends.addAll(recommends);
+            public void onNext(ResponseMsg<List<Recommend>> listResponseMsg) {
+                mRecommends.addAll(listResponseMsg.getData());
                 mAdapter.notifyDataSetChanged();
             }
         };
@@ -136,19 +137,20 @@ public class HomeFragment extends BaseFragment {
      * 获取滚动条
      */
     private void addBanner() {
-        Subscriber<List<Banner>> subscriber = new Subscriber<List<Banner>>() {
+        Subscriber<ResponseMsg<List<Banner>>> subscriber = new Subscriber<ResponseMsg<List<Banner>>>() {
             @Override
             public void onCompleted() {
+
             }
 
             @Override
             public void onError(Throwable e) {
-                e.printStackTrace();
+
             }
 
             @Override
-            public void onNext(List<Banner> banners) {
-                for (Banner banner : banners) {
+            public void onNext(ResponseMsg<List<Banner>> listResponseMsg) {
+                for (Banner banner : listResponseMsg.getData()) {
 
                     TextSliderView textSliderView = new TextSliderView(getActivity());
                     textSliderView.image(banner.getImgUrl());

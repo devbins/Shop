@@ -12,6 +12,7 @@ import android.view.View;
 import com.dev.bins.shop.R;
 import com.dev.bins.shop.bean.Goods;
 import com.dev.bins.shop.bean.GoodsItem;
+import com.dev.bins.shop.bean.ResponseMsg;
 import com.dev.bins.shop.fragment.BaseFragment;
 import com.dev.bins.shop.net.NetworkManager;
 
@@ -64,11 +65,10 @@ public class FindFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     }
 
     public void load(int page) {
-        Subscriber<Goods> subscriber = new Subscriber<Goods>() {
+        Subscriber<ResponseMsg<Goods>> subscriber = new Subscriber<ResponseMsg<Goods>>() {
             @Override
             public void onCompleted() {
-                mAdapter.notifyDataSetChanged();
-                mSwipe.setRefreshing(false);
+
             }
 
             @Override
@@ -78,9 +78,11 @@ public class FindFragment extends BaseFragment implements SwipeRefreshLayout.OnR
             }
 
             @Override
-            public void onNext(Goods goodses) {
+            public void onNext(ResponseMsg<Goods> goodsResponseMsg) {
                 mGoods.clear();
-                mGoods.addAll(goodses.getGoods());
+                mGoods.addAll(goodsResponseMsg.getData().getGoods());
+                mAdapter.notifyDataSetChanged();
+                mSwipe.setRefreshing(false);
             }
         };
         NetworkManager.getInstance().getGoods(subscriber, page, 10);
