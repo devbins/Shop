@@ -110,6 +110,8 @@ public class CartFragment extends BaseFragment {
                 mCartAdapter.notifyDataSetChanged();
             }
         });
+
+        
         getData();
     }
 
