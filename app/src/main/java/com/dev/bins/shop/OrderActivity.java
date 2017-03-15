@@ -2,17 +2,20 @@ package com.dev.bins.shop;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dev.bins.shop.bean.GoodsItem;
+import com.dev.bins.shop.bean.OrderAddress;
 
 import org.litepal.crud.DataSupport;
 
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class OrderActivity extends AppCompatActivity {
 
@@ -50,14 +53,35 @@ public class OrderActivity extends AppCompatActivity {
      */
     @BindView(R.id.tv_submit)
     TextView mTvSubmit;
+
+    @BindView(R.id.tv_good_count)
+    TextView mTvGoodsCount;
     private List<GoodsItem> mGoods;
+    private OrderAddress mDefaultOrderAddress;
+    private GoodsAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
-        mGoods = DataSupport.where("isChecked=？", "true").find(GoodsItem.class);
+        ButterKnife.bind(this);
+        initData();
+    }
 
+    private void initData() {
+        mGoods = DataSupport.findAll(GoodsItem.class);
+//        mGoods = DataSupport.where("isChecked=?", "true").find(GoodsItem.class);
+        mTvGoodsCount.setText("共" + String.valueOf(mGoods.size()) + "件");
+        List<OrderAddress> orderAddresses = DataSupport.where("isDefault=?", "true").find(OrderAddress.class);
+        if (null != orderAddresses && orderAddresses.size() > 0) {
+            mDefaultOrderAddress = orderAddresses.get(0);
+            mTvReceiver.setText(mDefaultOrderAddress.getName());
+            mTvAddress.setText(mDefaultOrderAddress.getAdd() + mDefaultOrderAddress.getAddress());
+        }
+        mTvTotalPrice.setText("应付款:￥" + String.valueOf(calcPrice()));
+        mAdapter = new GoodsAdapter(mGoods);
+        mRecyclerViewGoods.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        mRecyclerViewGoods.setAdapter(mAdapter);
     }
 
     public double calcPrice() {
@@ -70,7 +94,6 @@ public class OrderActivity extends AppCompatActivity {
         }
         return price;
     }
-
 
 
 }

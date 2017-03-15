@@ -1,10 +1,9 @@
 package com.dev.bins.shop.net;
 
-import com.dev.bins.shop.bean.Address;
 import com.dev.bins.shop.bean.Banner;
-import com.dev.bins.shop.bean.BaseBean;
 import com.dev.bins.shop.bean.Category;
 import com.dev.bins.shop.bean.Goods;
+import com.dev.bins.shop.bean.OrderAddress;
 import com.dev.bins.shop.bean.Recommend;
 import com.dev.bins.shop.bean.ResponseMsg;
 import com.dev.bins.shop.bean.User;
@@ -94,5 +93,5 @@ public interface Api {
      * @return
      */
     @GET("address/{cid}")
-    Observable<ResponseMsg<List<Address>>> getAddress(@Path("cid") int cid);
+    Observable<ResponseMsg<List<OrderAddress>>> getAddress(@Path("cid") int cid);
 }

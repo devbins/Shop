@@ -65,6 +65,9 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:paddingLeft="10dp"
+                android:textSize="20sp"
+                tools:text="20"
                 android:id="@+id/tv_good_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

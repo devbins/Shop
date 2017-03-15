@@ -1,10 +1,9 @@
 package com.dev.bins.shop.net;
 
-import com.dev.bins.shop.bean.Address;
 import com.dev.bins.shop.bean.Banner;
-import com.dev.bins.shop.bean.BaseBean;
 import com.dev.bins.shop.bean.Category;
 import com.dev.bins.shop.bean.Goods;
+import com.dev.bins.shop.bean.OrderAddress;
 import com.dev.bins.shop.bean.Recommend;
 import com.dev.bins.shop.bean.ResponseMsg;
 import com.dev.bins.shop.bean.User;
@@ -78,7 +77,7 @@ public class NetworkManager {
     }
 
 
-    public Subscription getAddress(Subscriber<ResponseMsg<List<Address>>> subscriber,int cid){
+    public Subscription getAddress(Subscriber<ResponseMsg<List<OrderAddress>>> subscriber, int cid){
         return getData(mApi.getAddress(cid),subscriber);
     }
 

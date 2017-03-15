@@ -13,6 +13,8 @@ public class OrderAddress extends DataSupport{
     private String add;
     private String address;
 
+    private boolean isDefault = false;
+
     public  OrderAddress(){
 
     }
@@ -62,5 +64,13 @@ public class OrderAddress extends DataSupport{
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public boolean isDefault() {
+        return isDefault;
+    }
+
+    public void setDefault(boolean aDefault) {
+        isDefault = aDefault;
     }
 }
