@@ -6,7 +6,7 @@ import org.litepal.crud.DataSupport;
  * Created by bin on 26/02/2017.
  */
 
-public class OrderAddress extends DataSupport {
+public class OrderAddress extends DataSupport{
     private long id;
     private String name;
     private String phone;

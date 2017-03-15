@@ -1,5 +1,6 @@
 package com.dev.bins.shop.net;
 
+import com.dev.bins.shop.bean.Address;
 import com.dev.bins.shop.bean.Banner;
 import com.dev.bins.shop.bean.BaseBean;
 import com.dev.bins.shop.bean.Category;
@@ -14,6 +15,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -85,4 +87,12 @@ public interface Api {
      */
     @GET("category")
     Observable<ResponseMsg<Goods>> getCategoryData(@Query("cid") int cid, @Query("curPage") int curPage, @Query("pageSize") int pageSize);
+
+    /**
+     * 获取用户收货地址
+     * @param cid 用户id
+     * @return
+     */
+    @GET("address/{cid}")
+    Observable<ResponseMsg<List<Address>>> getAddress(@Path("cid") int cid);
 }

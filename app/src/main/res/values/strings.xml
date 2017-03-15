@@ -27,6 +27,7 @@
     <string name="forget_pwd">忘记密码</string>
     <string name="error_phone">手机格式不对</string>
     <string name="reg_error">注册失败</string>
+    <string name="submit_order">提交订单</string>
 
 
 </resources>

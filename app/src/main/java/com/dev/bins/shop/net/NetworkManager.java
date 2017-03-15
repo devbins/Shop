@@ -1,5 +1,6 @@
 package com.dev.bins.shop.net;
 
+import com.dev.bins.shop.bean.Address;
 import com.dev.bins.shop.bean.Banner;
 import com.dev.bins.shop.bean.BaseBean;
 import com.dev.bins.shop.bean.Category;
@@ -75,6 +76,12 @@ public class NetworkManager {
     public Subscription getCategoryData(Subscriber<ResponseMsg<Goods>> subscriber, int cid, int curPage, int pageSize) {
         return getData(mApi.getCategoryData(cid, curPage, pageSize), subscriber);
     }
+
+
+    public Subscription getAddress(Subscriber<ResponseMsg<List<Address>>> subscriber,int cid){
+        return getData(mApi.getAddress(cid),subscriber);
+    }
+
 
     public <T> Subscription getData(Observable<T> observable, Subscriber<T> subscriber) {
         return observable.subscribeOn(Schedulers.io())

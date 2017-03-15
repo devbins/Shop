@@ -1,28 +1,24 @@
 package com.dev.bins.shop.fragment.Cart;
 
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.dev.bins.shop.OrderActivity;
 import com.dev.bins.shop.R;
-import com.dev.bins.shop.bean.Cart;
 import com.dev.bins.shop.bean.GoodsItem;
 import com.dev.bins.shop.fragment.BaseFragment;
-import com.dev.bins.shop.widget.MyToolbar;
 
 import org.litepal.crud.DataSupport;
 
@@ -31,12 +27,9 @@ import java.util.List;
 
 
 import butterknife.BindView;
-import rx.Observable;
-
-import static android.R.attr.data;
 
 
-public class CartFragment extends BaseFragment {
+public class CartFragment extends BaseFragment implements View.OnClickListener {
     @BindView(R.id.cart_toolbar)
     Toolbar toolbar;
 
@@ -44,7 +37,7 @@ public class CartFragment extends BaseFragment {
     RecyclerView mCartRecyclerView;
 
     @BindView(R.id.btn_calc)
-    Button btnCalc;
+    Button mBtnCalc;
     @BindView(R.id.tv_total_price)
     TextView mTvTotalPrice;
     @BindView(R.id.cb)
@@ -110,8 +103,8 @@ public class CartFragment extends BaseFragment {
                 mCartAdapter.notifyDataSetChanged();
             }
         });
+        mBtnCalc.setOnClickListener(this);
 
-        
         getData();
     }
 
@@ -142,4 +135,9 @@ public class CartFragment extends BaseFragment {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(getContext(), OrderActivity.class);
+        startActivity(intent);
+    }
 }

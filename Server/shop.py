@@ -21,7 +21,8 @@ urls = (
     '/category','Category',
     '/login','Login',
     '/reg','Reg',
-    '/image','Image'
+    '/image','Image',
+    '/address','Address'
 )
 db = web.database(dbn='sqlite', db='shop.db',)
 class index:
@@ -54,6 +55,13 @@ class Login:
         errorcode = cmp(pwd,oldpwd)
         return json.dumps({'errorcode':errorcode,'errormsg':'','data':{'phone':in_data['phone'],'avatar':data.avatar}})
        
+
+class Address:
+    def GET(self):
+        params = web.input()
+        address = db.select('address',where="cid=$cid",vars={'cid':params['cid']})
+        return json.dumps({'errorcode':0,'errormsg':'','data':{address}})
+
     
 class img:
     def GET(self):

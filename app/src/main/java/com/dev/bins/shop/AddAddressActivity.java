@@ -21,6 +21,7 @@ import com.dev.bins.shop.bean.OrderAddress;
 import com.dev.bins.shop.bean.Province;
 import com.dev.bins.shop.fragment.me.ProvinceHandler;
 import com.dev.bins.shop.widget.MyToolbar;
+import com.google.gson.Gson;
 
 import org.xml.sax.SAXException;
 
@@ -81,7 +82,6 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//        imm.toggleSoftInput(0, InputMethodManager.HIDE_IMPLICIT_ONLY);
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
         mOptionsPickerView.show();
     }
@@ -90,7 +90,6 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
         mOptionsPickerView = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
-                //返回的分别是三个级别的选中位置
                 String tx = mProvinceList.get(options1).getPickerViewText()
                         + mCities.get(options1).get(option2)
                         + mDistricts.get(options1).get(option2).get(options3).getPickerViewText();
@@ -174,8 +173,12 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
             hasEmpty = true;
         }
         if (!hasEmpty) {
+            /**
+             * 为了简单直接保存在本地，不往服务器上存储了
+             */
             OrderAddress orderAddress = new OrderAddress(name, phone, addr, address);
             orderAddress.save();
+
         }
 
 
