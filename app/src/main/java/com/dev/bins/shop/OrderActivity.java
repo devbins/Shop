@@ -69,10 +69,10 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        mGoods = DataSupport.findAll(GoodsItem.class);
-//        mGoods = DataSupport.where("isChecked=?", "true").find(GoodsItem.class);
+//        mGoods = DataSupport.findAll(GoodsItem.class);
+        mGoods = DataSupport.where("isChecked=?", "1").find(GoodsItem.class);
         mTvGoodsCount.setText("共" + String.valueOf(mGoods.size()) + "件");
-        List<OrderAddress> orderAddresses = DataSupport.where("isDefault=?", "true").find(OrderAddress.class);
+        List<OrderAddress> orderAddresses = DataSupport.where("isDefault=?", "1").find(OrderAddress.class);
         if (null != orderAddresses && orderAddresses.size() > 0) {
             mDefaultOrderAddress = orderAddresses.get(0);
             mTvReceiver.setText(mDefaultOrderAddress.getName());
