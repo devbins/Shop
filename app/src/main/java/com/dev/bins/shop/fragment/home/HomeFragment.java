@@ -17,23 +17,18 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.dev.bins.shop.R;
-import com.dev.bins.shop.ShopDetailActivity;
+import com.dev.bins.shop.ui.ShopDetailActivity;
 import com.dev.bins.shop.bean.Banner;
 import com.dev.bins.shop.bean.Recommend;
 import com.dev.bins.shop.bean.ResponseMsg;
 import com.dev.bins.shop.fragment.BaseFragment;
 import com.dev.bins.shop.net.NetworkManager;
-import com.dev.bins.shop.widget.MyToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import rx.Subscriber;
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
-
-import static android.R.attr.banner;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dev.bins.shop.AddAddressActivity;
-import com.dev.bins.shop.OrderListActivity;
+import com.dev.bins.shop.ui.OrderListActivity;
 import com.dev.bins.shop.R;
 import com.dev.bins.shop.fragment.BaseFragment;
 import com.squareup.picasso.Picasso;

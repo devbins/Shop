@@ -1,4 +1,4 @@
-package com.dev.bins.shop;
+package com.dev.bins.shop.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,13 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.dev.bins.shop.bean.BaseBean;
+import com.dev.bins.shop.R;
 import com.dev.bins.shop.bean.ResponseMsg;
 import com.dev.bins.shop.bean.User;
 import com.dev.bins.shop.net.NetworkManager;
 import com.dev.bins.shop.util.UserManager;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import butterknife.BindView;

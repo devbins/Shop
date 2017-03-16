@@ -1,4 +1,4 @@
-package com.dev.bins.shop;
+package com.dev.bins.shop.ui;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.dev.bins.shop.R;
 import com.dev.bins.shop.fragment.Cart.CartFragment;
 import com.dev.bins.shop.fragment.category.CategoryFragment;
 import com.dev.bins.shop.fragment.home.HomeFragment;

@@ -1,12 +1,15 @@
-package com.dev.bins.shop;
+package com.dev.bins.shop.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.dev.bins.shop.R;
 import com.dev.bins.shop.bean.GoodsItem;
 import com.dev.bins.shop.bean.OrderAddress;
 
@@ -16,9 +19,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class OrderActivity extends AppCompatActivity {
 
+    private static final int ADDRESS = 0;
     /**
      * 商品展示列表
      */
@@ -69,7 +74,6 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     private void initData() {
-//        mGoods = DataSupport.findAll(GoodsItem.class);
         mGoods = DataSupport.where("isChecked=?", "1").find(GoodsItem.class);
         mTvGoodsCount.setText("共" + String.valueOf(mGoods.size()) + "件");
         List<OrderAddress> orderAddresses = DataSupport.where("isDefault=?", "1").find(OrderAddress.class);
@@ -96,4 +100,16 @@ public class OrderActivity extends AppCompatActivity {
     }
 
 
+    @OnClick(R.id.rl_add)
+    public void manageAddress(View view) {
+        Intent intent = new Intent(this, ManageAddressActivity.class);
+        startActivityForResult(intent,ADDRESS);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+    }
 }

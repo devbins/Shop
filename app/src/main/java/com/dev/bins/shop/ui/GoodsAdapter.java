@@ -1,4 +1,4 @@
-package com.dev.bins.shop;
+package com.dev.bins.shop.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.dev.bins.shop.R;
 import com.dev.bins.shop.bean.GoodsItem;
 import com.squareup.picasso.Picasso;
 

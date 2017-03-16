@@ -4,7 +4,6 @@ package com.dev.bins.shop.fragment.Cart;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +14,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.dev.bins.shop.OrderActivity;
+import com.dev.bins.shop.ui.OrderActivity;
 import com.dev.bins.shop.R;
 import com.dev.bins.shop.bean.GoodsItem;
 import com.dev.bins.shop.fragment.BaseFragment;

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.dev.bins.shop.OrderActivity">
+    tools:context="com.dev.bins.shop.ui.OrderActivity">
 
 
     <android.support.v7.widget.Toolbar

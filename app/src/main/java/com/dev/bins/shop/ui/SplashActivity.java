@@ -1,4 +1,4 @@
-package com.dev.bins.shop;
+package com.dev.bins.shop.ui;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.dev.bins.shop.App;
+import com.dev.bins.shop.R;
 import com.dev.bins.shop.bean.User;
 
 public class SplashActivity extends AppCompatActivity {

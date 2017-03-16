@@ -1,8 +1,10 @@
-package com.dev.bins.shop;
+package com.dev.bins.shop.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+
+import com.dev.bins.shop.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

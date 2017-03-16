@@ -20,24 +20,25 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".ui.MainActivity" />
         <activity
-            android:name=".ShopDetailActivity"
+            android:name=".ui.ShopDetailActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".OrderListActivity" />
+        <activity android:name=".ui.OrderListActivity" />
         <activity android:name=".AddAddressActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".OrderActivity"></activity>
+        <activity android:name=".ui.RegisterActivity" />
+        <activity android:name=".ui.OrderActivity" />
+        <activity android:name=".ui.ManageAddressActivity"></activity>
     </application>
 
 </manifest>
