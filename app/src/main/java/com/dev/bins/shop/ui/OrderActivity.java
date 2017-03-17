@@ -74,18 +74,22 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     private void initData() {
+        initAddress();
         mGoods = DataSupport.where("isChecked=?", "1").find(GoodsItem.class);
         mTvGoodsCount.setText("共" + String.valueOf(mGoods.size()) + "件");
+        mTvTotalPrice.setText("应付款:￥" + String.valueOf(calcPrice()));
+        mAdapter = new GoodsAdapter(mGoods);
+        mRecyclerViewGoods.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        mRecyclerViewGoods.setAdapter(mAdapter);
+    }
+
+    private void initAddress() {
         List<OrderAddress> orderAddresses = DataSupport.where("isDefault=?", "1").find(OrderAddress.class);
         if (null != orderAddresses && orderAddresses.size() > 0) {
             mDefaultOrderAddress = orderAddresses.get(0);
             mTvReceiver.setText(mDefaultOrderAddress.getName());
             mTvAddress.setText(mDefaultOrderAddress.getAdd() + mDefaultOrderAddress.getAddress());
         }
-        mTvTotalPrice.setText("应付款:￥" + String.valueOf(calcPrice()));
-        mAdapter = new GoodsAdapter(mGoods);
-        mRecyclerViewGoods.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        mRecyclerViewGoods.setAdapter(mAdapter);
     }
 
     public double calcPrice() {

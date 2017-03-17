@@ -1,4 +1,4 @@
-package com.dev.bins.shop;
+package com.dev.bins.shop.ui;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
+import com.dev.bins.shop.R;
 import com.dev.bins.shop.bean.City;
 import com.dev.bins.shop.bean.District;
 import com.dev.bins.shop.bean.OrderAddress;
