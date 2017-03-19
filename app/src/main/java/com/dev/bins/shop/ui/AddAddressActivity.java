@@ -179,7 +179,8 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
              */
             OrderAddress orderAddress = new OrderAddress(name, phone, addr, address);
             orderAddress.save();
-
+            Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();
+            setResult(RESULT_OK);
         }
 
 

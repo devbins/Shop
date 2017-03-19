@@ -3,11 +3,13 @@ package com.dev.bins.shop.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.dev.bins.shop.R;
 import com.dev.bins.shop.bean.OrderAddress;
+import com.dev.bins.shop.ui.adapter.AddressAdapter;
 
 import org.litepal.crud.DataSupport;
 
@@ -21,8 +23,8 @@ public class ManageAddressActivity extends AppCompatActivity {
 
     private static final int ADD_ADDRESS = 0;
     @BindView(R.id.recycler_address)
-    private RecyclerView mRecyclerViewAddress;
-
+    RecyclerView mRecyclerViewAddress;
+    private AddressAdapter mAdapter;
     private List<OrderAddress> mAddresses;
 
     @Override
@@ -35,7 +37,9 @@ public class ManageAddressActivity extends AppCompatActivity {
 
     private void init() {
         mAddresses = DataSupport.findAll(OrderAddress.class);
-
+        mAdapter = new AddressAdapter(mAddresses);
+        mRecyclerViewAddress.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        mRecyclerViewAddress.setAdapter(mAdapter);
     }
 
     @OnClick(R.id.btn_add_address)
@@ -48,5 +52,7 @@ public class ManageAddressActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        mAddresses = DataSupport.findAll(OrderAddress.class);
+        mAdapter.notifyDataSetChanged();
     }
 }
