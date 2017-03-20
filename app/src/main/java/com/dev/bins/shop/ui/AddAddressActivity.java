@@ -181,6 +181,7 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
             orderAddress.save();
             Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();
             setResult(RESULT_OK);
+            finish();
         }
 
 

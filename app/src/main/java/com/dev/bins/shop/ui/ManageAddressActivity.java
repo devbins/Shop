@@ -19,6 +19,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static org.litepal.crud.DataSupport.findAll;
+
 public class ManageAddressActivity extends AppCompatActivity {
 
     private static final int ADD_ADDRESS = 0;
@@ -36,7 +38,7 @@ public class ManageAddressActivity extends AppCompatActivity {
     }
 
     private void init() {
-        mAddresses = DataSupport.findAll(OrderAddress.class);
+        mAddresses = findAll(OrderAddress.class);
         mAdapter = new AddressAdapter(mAddresses);
         mRecyclerViewAddress.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRecyclerViewAddress.setAdapter(mAdapter);
@@ -52,7 +54,8 @@ public class ManageAddressActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mAddresses = DataSupport.findAll(OrderAddress.class);
+        mAddresses.clear();
+        mAddresses.addAll(DataSupport.findAll(OrderAddress.class));
         mAdapter.notifyDataSetChanged();
     }
 }
