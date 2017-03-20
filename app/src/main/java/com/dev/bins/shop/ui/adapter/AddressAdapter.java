@@ -1,5 +1,6 @@
 package com.dev.bins.shop.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.icu.util.HebrewCalendar;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.dev.bins.shop.R;
 import com.dev.bins.shop.bean.OrderAddress;
 import com.dev.bins.shop.ui.AddAddressActivity;
+import com.dev.bins.shop.ui.ManageAddressActivity;
 
 import org.litepal.crud.DataSupport;
 
@@ -33,15 +35,15 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.Holder> 
 
     private List<OrderAddress> mAddresses;
 
-    private Context mContext;
+    private Activity mContext;
 
-    public AddressAdapter(List<OrderAddress> mAddresses) {
+    public AddressAdapter(Activity context, List<OrderAddress> mAddresses) {
         this.mAddresses = mAddresses;
+        mContext = context;
     }
 
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mContext = parent.getContext();
         return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_address, parent, false));
     }
 
@@ -73,7 +75,8 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.Holder> 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, AddAddressActivity.class);
-                mContext.startActivity(intent);
+                intent.putExtra("id",orderAddress.getId());
+                mContext.startActivityForResult(intent,0);
             }
         });
         holder.mTvDelAdrress.setOnClickListener(new View.OnClickListener() {

@@ -39,7 +39,7 @@ public class ManageAddressActivity extends AppCompatActivity {
 
     private void init() {
         mAddresses = findAll(OrderAddress.class);
-        mAdapter = new AddressAdapter(mAddresses);
+        mAdapter = new AddressAdapter(this,mAddresses);
         mRecyclerViewAddress.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRecyclerViewAddress.setAdapter(mAdapter);
     }
@@ -54,8 +54,10 @@ public class ManageAddressActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mAddresses.clear();
-        mAddresses.addAll(DataSupport.findAll(OrderAddress.class));
-        mAdapter.notifyDataSetChanged();
+        if (resultCode == RESULT_OK) {
+            mAddresses.clear();
+            mAddresses.addAll(DataSupport.findAll(OrderAddress.class));
+            mAdapter.notifyDataSetChanged();
+        }
     }
 }

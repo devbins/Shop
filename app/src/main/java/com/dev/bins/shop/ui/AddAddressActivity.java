@@ -2,7 +2,6 @@ package com.dev.bins.shop.ui;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -21,9 +20,8 @@ import com.dev.bins.shop.bean.District;
 import com.dev.bins.shop.bean.OrderAddress;
 import com.dev.bins.shop.bean.Province;
 import com.dev.bins.shop.fragment.me.ProvinceHandler;
-import com.dev.bins.shop.widget.MyToolbar;
-import com.google.gson.Gson;
 
+import org.litepal.crud.DataSupport;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
@@ -38,7 +36,6 @@ import javax.xml.parsers.SAXParserFactory;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.dev.bins.shop.R.string.address;
 import static org.litepal.LitePalApplication.getContext;
 
 public class AddAddressActivity extends AppCompatActivity implements View.OnClickListener {
@@ -61,6 +58,7 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
     private ArrayList<Province> mProvinceList;
     private ArrayList<ArrayList<String>> mCities = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<District>>> mDistricts = new ArrayList<>();
+    private OrderAddress mOrderAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,9 +105,19 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initData() {
-
+        long id = getIntent().getLongExtra("id", -1);
+        if (-1 != id) {
+            mOrderAddress = DataSupport.find(OrderAddress.class, id);
+            if (null != mOrderAddress) {
+                mEditTextName.setText(mOrderAddress.getName());
+                mEditTextPhone.setText(mOrderAddress.getPhone());
+                mTextViewAdd.setText(mOrderAddress.getAdd());
+                mEditTextAddress.setText(mOrderAddress.getAddress());
+            } else {
+                mOrderAddress = new OrderAddress();
+            }
+        }
         AssetManager assetManager = getContext().getAssets();
-
         try {
             InputStream inputStream = assetManager.open("province.xml");
             SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -177,8 +185,11 @@ public class AddAddressActivity extends AppCompatActivity implements View.OnClic
             /**
              * 为了简单直接保存在本地，不往服务器上存储了
              */
-            OrderAddress orderAddress = new OrderAddress(name, phone, addr, address);
-            orderAddress.save();
+            mOrderAddress.setName(mEditTextName.getText().toString().trim());
+            mOrderAddress.setPhone(mEditTextPhone.getText().toString().trim());
+            mOrderAddress.setAdd(mTextViewAdd.getText().toString().trim());
+            mOrderAddress.setAddress(mEditTextAddress.getText().toString().trim());
+            mOrderAddress.save();
             Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();
             setResult(RESULT_OK);
             finish();
