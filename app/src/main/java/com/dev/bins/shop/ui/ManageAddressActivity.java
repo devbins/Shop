@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.dev.bins.shop.R;
@@ -39,9 +41,42 @@ public class ManageAddressActivity extends AppCompatActivity {
 
     private void init() {
         mAddresses = findAll(OrderAddress.class);
-        mAdapter = new AddressAdapter(this,mAddresses);
+        mAdapter = new AddressAdapter(this, mAddresses);
         mRecyclerViewAddress.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRecyclerViewAddress.setAdapter(mAdapter);
+        final GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                float x = e.getX();
+                float y = e.getY();
+                View child = mRecyclerViewAddress.findChildViewUnder(x, y);
+                if (null != child) {
+                    int position = mRecyclerViewAddress.getChildLayoutPosition(child);
+                    OrderAddress orderAddress = mAddresses.get(position);
+                    Intent intent = new Intent();
+                    intent.putExtra("id",orderAddress.getId());
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+                return true;
+            }
+        });
+        mRecyclerViewAddress.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                return gestureDetector.onTouchEvent(e);
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+                gestureDetector.onTouchEvent(e);
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
     }
 
     @OnClick(R.id.btn_add_address)

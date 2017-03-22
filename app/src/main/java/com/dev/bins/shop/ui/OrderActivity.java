@@ -23,7 +23,7 @@ import butterknife.OnClick;
 
 public class OrderActivity extends AppCompatActivity {
 
-    private static final int ADDRESS = 0;
+    public static final int ADDRESS = 0;
     /**
      * 商品展示列表
      */
@@ -107,13 +107,25 @@ public class OrderActivity extends AppCompatActivity {
     @OnClick(R.id.rl_add)
     public void manageAddress(View view) {
         Intent intent = new Intent(this, ManageAddressActivity.class);
-        startActivityForResult(intent,ADDRESS);
+        startActivityForResult(intent, ADDRESS);
     }
 
+    @OnClick(R.id.tv_submit)
+    public void submitOrder(View view) {
+
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (RESULT_OK == resultCode) {
+            long id = data.getLongExtra("id", -1);
+            mDefaultOrderAddress = DataSupport.find(OrderAddress.class, id);
+            if (null != mDefaultOrderAddress) {
+                mTvReceiver.setText(mDefaultOrderAddress.getName());
+                mTvAddress.setText(mDefaultOrderAddress.getAdd() + mDefaultOrderAddress.getAddress());
+            }
+        }
 
     }
 }
