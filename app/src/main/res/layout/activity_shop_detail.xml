@@ -21,10 +21,29 @@
         android:layout_height="0dp"
         android:layout_weight="1"></WebView>
 
-    <Button
-        android:id="@+id/js"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text="chang color" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/js"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:text="@string/collect" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_buy_cart" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/buy_now" />
+    </LinearLayout>
 </LinearLayout>

@@ -31,6 +31,8 @@
     <string name="set_default_address">设为默认</string>
     <string name="edit_address">编辑</string>
     <string name="del_address">删除</string>
+    <string name="collect">收藏</string>
+    <string name="add_buy_cart">加入购物车</string>
 
 
 </resources>
