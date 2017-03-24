@@ -27,23 +27,32 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/js"
+            android:id="@+id/collect"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
+            android:drawableTop="@drawable/collect"
             android:text="@string/collect" />
 
         <Button
+            android:id="@+id/btn_add_to_cart"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/add_buy_cart" />
+            android:background="@color/orange"
+            android:text="@string/add_buy_cart"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
 
         <Button
+            android:id="@+id/btn_buy_now"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/buy_now" />
+            android:background="@color/red"
+            android:text="@string/buy_now"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
     </LinearLayout>
 </LinearLayout>

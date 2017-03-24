@@ -112,7 +112,7 @@ public class OrderActivity extends AppCompatActivity {
 
     @OnClick(R.id.tv_submit)
     public void submitOrder(View view) {
-
+        // TODO: 24/03/2017 跳转到支付界面
     }
 
     @Override

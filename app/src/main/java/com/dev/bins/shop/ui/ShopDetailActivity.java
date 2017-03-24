@@ -19,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ShopDetailActivity extends AppCompatActivity {
 
@@ -28,8 +29,7 @@ public class ShopDetailActivity extends AppCompatActivity {
 
     @BindView(R.id.shopdetail_toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.js)
-    Button btnJs;
+
     private JS js;
 
     @Override
@@ -45,12 +45,21 @@ public class ShopDetailActivity extends AppCompatActivity {
         js = new JS();
         mWebView.addJavascriptInterface(js, "app");
         mWebView.loadUrl("file:///android_asset/index.html");
-        btnJs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                js.changeHtml();
-            }
-        });
+    }
+
+    @OnClick(R.id.collect)
+    public void collect(View view) {
+        js.changeHtml();
+    }
+
+    @OnClick(R.id.btn_buy_now)
+    public void buyNow(View view) {
+
+    }
+
+    @OnClick(R.id.btn_add_to_cart)
+    public void addToCart(View view) {
+
     }
 
 
