@@ -28,11 +28,6 @@ dependencies {
         exclude module: 'okhttp'
     }
 
-
-
-
-
-
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile 'com.android.support:appcompat-v7:25.1.1'

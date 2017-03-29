@@ -29,7 +29,9 @@
         <Button
             android:id="@+id/collect"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray"
             android:layout_gravity="bottom"
             android:layout_weight="1"
             android:drawableTop="@drawable/collect"
