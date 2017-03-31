@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.dev.bins.shop.R;
@@ -35,6 +38,8 @@ public class FindFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     SwipeRefreshLayout mSwipe;
     FindAdapter mAdapter;
 
+    GestureDetector mGestureDetector;
+
     public FindFragment() {
         // Required empty public constructor
     }
@@ -59,8 +64,38 @@ public class FindFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         super.onViewCreated(view, savedInstanceState);
         mSwipe.setOnRefreshListener(this);
         mAdapter = new FindAdapter(mGoods);
+        mGestureDetector = new GestureDetector(getContext(),new GestureDetector.SimpleOnGestureListener(){
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                float x = e.getX();
+                float y = e.getY();
+                View viewUnder = mRecyclerView.findChildViewUnder(x, y);
+                if (null != viewUnder){
+                    int position = mRecyclerView.getChildLayoutPosition(viewUnder);
+                    
+                }
+                return super.onSingleTapUp(e);
+            }
+        });
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                mGestureDetector.onTouchEvent(e);
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+                mGestureDetector.onTouchEvent(e);
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
         load(1);
     }
 
