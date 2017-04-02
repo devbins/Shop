@@ -1,6 +1,7 @@
 package com.dev.bins.shop.fragment.find;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.dev.bins.shop.R;
 import com.dev.bins.shop.bean.Goods;
@@ -18,6 +20,7 @@ import com.dev.bins.shop.bean.GoodsItem;
 import com.dev.bins.shop.bean.ResponseMsg;
 import com.dev.bins.shop.fragment.BaseFragment;
 import com.dev.bins.shop.net.NetworkManager;
+import com.dev.bins.shop.ui.ShopDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,15 +33,14 @@ import rx.Subscriber;
  */
 public class FindFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    private List<GoodsItem> mGoods = new ArrayList<>();
-    private int curPage = 1;
     @BindView(R.id.hot_recycler)
     RecyclerView mRecyclerView;
     @BindView(R.id.swipe)
     SwipeRefreshLayout mSwipe;
     FindAdapter mAdapter;
-
     GestureDetector mGestureDetector;
+    private List<GoodsItem> mGoods = new ArrayList<>();
+    private int curPage = 1;
 
     public FindFragment() {
         // Required empty public constructor
@@ -64,15 +66,18 @@ public class FindFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         super.onViewCreated(view, savedInstanceState);
         mSwipe.setOnRefreshListener(this);
         mAdapter = new FindAdapter(mGoods);
-        mGestureDetector = new GestureDetector(getContext(),new GestureDetector.SimpleOnGestureListener(){
+        mGestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
                 float x = e.getX();
                 float y = e.getY();
                 View viewUnder = mRecyclerView.findChildViewUnder(x, y);
-                if (null != viewUnder){
+                if (null != viewUnder) {
                     int position = mRecyclerView.getChildLayoutPosition(viewUnder);
-                    
+                    if (-1 != position) {
+                        Intent intent = new Intent(getContext(), ShopDetailActivity.class);
+                        startActivity(intent);
+                    }
                 }
                 return super.onSingleTapUp(e);
             }
@@ -124,7 +129,6 @@ public class FindFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 //        mSubscriptions.add(subscription);
 
     }
-
 
 
     @Override
